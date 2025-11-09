@@ -1,0 +1,35 @@
+<div class="container-fluid zaglavlje">
+  <a routerLink="" class="display-6 login-link">Početna strana</a>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4 ms-5">
+        <br> <br>
+        <h3>Prijava</h3>
+        <table>
+        <tr>
+            <td>Korisničko ime:</td>
+            <td><input type="text" name="username" [(ngModel)]="korisnickoIme"></td>
+        </tr>
+        <tr>
+            <td>Lozinka:</td>
+            <td><input type="password" name="password" [(ngModel)]="lozinka"></td>
+        </tr>
+        </table>
+        <div class = "greska">
+            {{greska}}
+        </div>
+        <br>
+        <button (click)="login()" class="dugmePotvrda">Prijava</button>
+
+        <br>
+     <div>
+        <br>
+        Nemate nalog? &nbsp; &nbsp;
+        <button (click)="registracija()" class="dugmePotvrda">Registracija</button>
+     </div>
+        <hr>
+    </div>
+  </div>
+</div>
