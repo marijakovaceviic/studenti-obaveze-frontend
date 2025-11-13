@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { KorisnikService } from '../servisi/korisnik.service';
+import { StudentService } from '../servisi/student.service';
 import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -9,24 +10,31 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private korisnikS:KorisnikService, private router:Router) {}
+  constructor(private studentS:StudentService, private router:Router) {}
 
-  korisnickoIme: string = "";
+  korIme: string = "";
   lozinka: string = "";
   greska: string = "";
 
   login(){
-    if (this.korisnickoIme == ""){
-      this.greska = "Nije uneto korisničko ime";
+    let email = this.korIme + "@student.etf.bg.ac.rs";
+
+    if (this.korIme == ""){
+      this.greska = "Nije unet email";
     }
     else if (this.lozinka == ""){
       this.greska = "Nije uneta lozinka";
     }
     else {
-      this.korisnikS.prijava(this.korisnickoIme, this.lozinka).subscribe(
+      const kriptovanaLozinka = CryptoJS.SHA256(this.lozinka).toString();
+
+      this.studentS.prijava(email, kriptovanaLozinka).subscribe(
         data => {
           if (data == null){
-            this.greska = "Pogresno korisničko ime ili šifra!";
+            this.greska = "Pogrešan email ili lozinka!";
+          }
+          else{
+            localStorage.setItem('ulogovan', JSON.stringify(data));
           }
         }
       )

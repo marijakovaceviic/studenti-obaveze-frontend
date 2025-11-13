@@ -1,0 +1,51 @@
+import { Component } from '@angular/core';
+import { PredmetiService } from '../servisi/predmeti.service';
+
+@Component({
+  selector: 'app-predmeti',
+  templateUrl: './predmeti.component.html',
+  styleUrls: ['./predmeti.component.css']
+})
+export class PredmetiComponent {
+
+  constructor(private predmetiS: PredmetiService){}
+
+  naziv:string = "";
+  sifra:string = "";
+  odsek:string = "";
+  godina:number = 0;
+  greska:string = "";
+
+  osvezavanjeForme(){
+    this.naziv= "";
+    this.sifra = "";
+    this.odsek = "";
+    this.godina = 0;
+    this.greska = "";
+  }
+
+  dodavanjePredemeta(){
+    if (this.naziv == ""){
+      this.greska = "Nije unet naziv";
+    } 
+    else if (this.sifra == ""){
+      this.greska = "Nije uneta "
+    }
+    else if (this.odsek == ""){
+      this.greska = "Nije izabran odsek";
+    }
+    else if (this.godina == 0){
+      this.greska = "Nije izabrana godina";
+    }
+    else{
+      this.predmetiS.dodavanjePredmeta(this.naziv, this.sifra, this.godina, this.odsek).subscribe(
+        data =>{
+          if (data != 0){
+            this.greska = "Uspesno dodat predmet!";
+            this.osvezavanjeForme();
+          }
+        }
+      )
+    }
+  }
+}

@@ -1,0 +1,80 @@
+<div class="container mt-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item" (click)="aktivanTab = 'profil'">
+      <a class="nav-link" [class.active]="aktivanTab === 'profil'">Profil</a>
+    </li>
+    <li class="nav-item" (click)="aktivanTab = 'lozinka'">
+      <a class="nav-link" [class.active]="aktivanTab === 'lozinka'"> Promena lozinke</a>
+    </li>
+    <li class="nav-item" (click)="aktivanTab = 'predmeti'">
+      <a class="nav-link" [class.active]="aktivanTab === 'predmeti'">Smer i predmeti</a>
+    </li>
+  </ul>
+
+  <div class="tab-content p-4 shadow-sm bg-white rounded-bottom">
+    <div *ngIf="aktivanTab === 'profil'">
+      
+        <div class="d-flex mt-5">
+            <div class="card shadow-sm p-4" style="border-radius: 12px; background-color: #fafafa;">
+                
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Ime:</span>
+                    <span class="fw-semibold">{{ulogovan.ime}}</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Prezime:</span>
+                    <span class="fw-semibold">{{ulogovan.prezime}}</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Indeks:</span>
+                    <span class="fw-semibold">{{ulogovan.godinaUpisa}}/{{ulogovan.brIndeksa}}</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Email:</span>
+                    <span class="fw-semibold">{{ulogovan.email}}</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-muted">Smer:</span>
+                    <span class="fw-semibold">{{ulogovan.smer}}</span>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div *ngIf="aktivanTab === 'lozinka'">
+      
+        <form (ngSubmit)="promenaLozinke()">
+            <div class="mb-3">
+                <label class="form-label">Stara lozinka:</label>
+                <input type="password" name = "staraLozinka" class="form-control" [(ngModel)]="staraLozinka"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Nova lozinka:</label>
+                <input type="password" name="novaLozinka" class="form-control" [(ngModel)]="novaLozinka"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Potvrda nove lozinke:</label>
+                <input type="password" name="potvrdaLozinke" class="form-control" [(ngModel)]="potvrdaLozinke"/>
+            </div>
+
+            <button type="submit" class="dugmePotvrda">Promeni lozinku</button>
+            <div>
+                {{greska}}
+            </div>
+        </form>
+
+
+    </div>
+    <div *ngIf="aktivanTab === 'predmeti'">
+      <!-- deo sa checkiranjem predmeta -->
+    </div>
+  </div>
+</div>

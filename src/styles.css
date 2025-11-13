@@ -84,3 +84,20 @@ body {
 .login-link:hover {
     color: linen;
 }
+
+.greska{
+    color: red;
+}
+
+.dugmePotvrda {
+    background-color: rgb(222, 221, 223);
+    color:rgb(21, 9, 39); 
+    border: 1px solid #1f172f;
+    padding: 8px 18px; 
+    cursor: pointer; 
+    border-radius: 7px; 
+}
+
+.dugmePotvrda:hover {
+    background-color: #274970;
+}

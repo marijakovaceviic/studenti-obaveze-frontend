@@ -14,4 +14,8 @@ export class AppComponent {
   get isLoginPage(): boolean {
     return this.router.url === '/login';
   }
+
+  get isHomePage(): boolean {
+    return this.router.url === '/';
+  }
 }

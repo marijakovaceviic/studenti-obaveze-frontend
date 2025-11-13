@@ -12,6 +12,8 @@
 
 <div class="container-fluid zaglavlje" *ngIf="!isLoginPage">
   <a routerLink="/login" class="display-6 login-link">Login</a>
+   <span *ngIf="!isHomePage" class="separator mx-2">|</span>
+  <a *ngIf="!isHomePage" routerLink="/" class="display-6 login-link">Početna strana</a>
 </div>
 
 <div class="wrapper d-flex flex-column min-vh-100">
