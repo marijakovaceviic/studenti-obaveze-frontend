@@ -29,13 +29,13 @@ export class RegistracijaComponent {
     }
     else{
       this.studentS.proveraStudenta(email).subscribe(
-         data => {
-          if (data == 0){
+         id => {
+          if (id == 0){
             this.greska = "Ne postoji student sa tim email-om!";
           }
           else{
             const kriptovanaLozinka = CryptoJS.SHA256(this.lozinka).toString();
-            this.studentS.registracija(email, kriptovanaLozinka).subscribe(
+            this.studentS.registracija(id, email, kriptovanaLozinka).subscribe(
               rez => {
                 if (rez == 0){
                   this.greska = "Student je već registrovan!";

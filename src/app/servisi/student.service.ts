@@ -16,9 +16,10 @@ export class StudentService {
     return this.http.post<number>(`${this.url}/provera`, email);
   }
 
-  registracija(email: string, lozinka: string){
+  registracija(id: number, email: string, lozinka: string){
     const data = {
-      email : email,
+      id: id,
+      email: email,
       lozinka: lozinka
     }
     return this.http.post<number>(`${this.url}/registracija`, data)

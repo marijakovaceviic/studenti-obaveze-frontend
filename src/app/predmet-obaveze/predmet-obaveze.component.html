@@ -1,0 +1,16 @@
+<div class="container mt-4">
+
+    <div class="tab-content p-4 shadow-sm bg-white rounded-bottom">
+        <div *ngIf="obaveze && obaveze.length > 0">
+
+            <div *ngFor="let o of obaveze; let i = index"
+                class="obaveza-stavka d-flex align-items-center mb-2 p-2 rounded" [routerLink]="['/obavezeStudent', o.id]">
+
+                <div class="broj-balon me-2">{{ i + 1 }}</div>
+
+                <div class="fw-semibold">{{ o.naziv }}</div>
+
+            </div>
+        </div>
+    </div>
+</div>

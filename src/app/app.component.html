@@ -10,11 +10,37 @@
   </div>
 </header>
 
-<div class="container-fluid zaglavlje" *ngIf="!isLoginPage">
+<!--div class="container-fluid zaglavlje" *ngIf="!isLoginPage">
   <a routerLink="/login" class="display-6 login-link">Login</a>
-   <span *ngIf="!isHomePage" class="separator mx-2">|</span>
+  <span *ngIf="!isHomePage" class="separator mx-2">|</span>
   <a *ngIf="!isHomePage" routerLink="/" class="display-6 login-link">Početna strana</a>
-</div>
+</div-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm px-3 custom-navbar">
+  
+  <!-- Hamburger dugme -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSadrzaj">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSadrzaj">
+
+    <ul class="navbar-nav ms-auto">
+
+      <li class="nav-item" *ngIf="!isHomePage">
+        <a class="nav-link fs-5" routerLink="/">Početna strana</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link fs-5" routerLink="/podesavanja">Podešavanja</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link fs-5" routerLink="/login">Login</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
 
 <div class="wrapper d-flex flex-column min-vh-100">
   <div class="content flex-grow-1">

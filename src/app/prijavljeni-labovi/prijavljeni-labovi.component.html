@@ -1,0 +1,62 @@
+<div class="prijave-container">
+
+    <div class="blok-prijava">
+        <h3 class="naslov-sekcije">📘 Prijavljene laboratorijske vežbe</h3>
+
+        <ng-container *ngIf="prijavljeniLabovi.length > 0; else nemaLabova">
+            <table class="moja-tabela">
+                <thead>
+                    <tr>
+                        <th>RB</th>
+                        <th>Predmet</th>
+                        <th>Naziv obaveze</th>
+                        <th>Rok</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of prijavljeniLabovi; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{p.nazivPredmeta}}</td>
+                        <td>{{p.naziv}}</td>
+                        <td>{{p.kraj | date:'dd.MM.yyyy HH:mm'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-container>
+
+        <ng-template #nemaLabova>
+            <p class="nema">Nema prijava za laboratorijske vežbe.</p>
+        </ng-template>
+    </div>
+
+
+    <div class="blok-prijava">
+        <h3 class="naslov-sekcije">📗 Prijavljene odbrane domaćih zadataka</h3>
+
+        <ng-container *ngIf="prijavljeneOdbrane.length > 0; else nemaOdbrana">
+            <table class="moja-tabela">
+                <thead>
+                    <tr>
+                        <th>RB</th>
+                        <th>Predmet</th>
+                        <th>Naziv obaveze</th>
+                        <th>Rok</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of prijavljeneOdbrane; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{p.nazivPredmeta}}</td>
+                        <td>{{p.naziv}}</td>
+                        <td>{{p.kraj | date:'dd.MM.yyyy HH:mm'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-container>
+
+        <ng-template #nemaOdbrana>
+            <p class="nema">Nema prijava za ispite.</p>
+        </ng-template>
+    </div>
+
+</div>

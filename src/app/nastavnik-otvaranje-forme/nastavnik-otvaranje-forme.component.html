@@ -1,0 +1,56 @@
+<form class="forma-obaveza">
+
+  <div class="form-grupa">
+    <label class="form-label">Predmet:</label>
+    <select class="form-select" name="predmet" [(ngModel)]="predmet">
+      <option *ngFor="let p of predmeti" [value]="p.id">
+        {{p.naziv}} - {{p.sifra}}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-grupa">
+    <label class="form-label">Tip obaveze:</label>
+    <select class="form-select" name="tip" [(ngModel)]="tip">
+      <option value="lab">Prijava za laboratorijsku vežbu</option>
+      <option value="domaci">Predaja domaćeg/projektnog zadatka</option>
+      <option value="odbrana">Prijava za odbranu projektnog zadatka</option>
+      <option value="kolokvijum">Prijava za kolokvijum</option>
+      <option value="ispit">Prijava za ispit</option>
+    </select>
+  </div>
+
+  <div class="form-grupa">
+    <label class="form-label">Naziv:</label>
+    <input type="text" name="naziv" [(ngModel)]="naziv" class="form-control">
+  </div>
+
+  <div class="form-grupa">
+    <label class="form-label">Opis:</label>
+    <textarea name="opis" rows="3" [(ngModel)]="opis" class="form-control"
+      placeholder="Opcioni opis obaveze"></textarea>
+  </div>
+
+  <div class="form-grupa">
+    <label class="form-label">Početak važenja:</label>
+    <input type="datetime-local" name="pocetak" [(ngModel)]="pocetak" class="form-control">
+  </div>
+
+  <div class="form-grupa">
+    <label class="form-label">Kraj važenja:</label>
+    <input type="datetime-local" name="kraj" [(ngModel)]="kraj" class="form-control">
+  </div>
+
+  <button type="button" class="dugme-potvrdi" (click)="sacuvajObavezu()">
+    Sačuvaj obavezu
+  </button>
+
+  <div *ngIf="greska" class="text-danger mt-2">
+    {{greska}}
+  </div>
+
+  <div *ngIf="uspeh" class="text-success mt-2">
+    {{uspeh}}
+  </div>
+
+</form>

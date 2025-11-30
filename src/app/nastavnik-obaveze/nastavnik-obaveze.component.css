@@ -1,0 +1,150 @@
+.lista-prijavljenih {
+  margin-top: 25px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.naslov-tabele {
+  font-size: 22px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #002b5c;
+}
+
+.moja-tabela {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+/* Header */
+.moja-tabela thead {
+  background: #dfe3e4; /* blaga sivo-plava */
+}
+
+.moja-tabela th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #002b5c;
+}
+
+/* Redovi */
+.moja-tabela td {
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f5;
+}
+
+/* Prugasto */
+.moja-tabela tbody tr:nth-child(even) {
+  background: #dfe3e4;
+}
+
+.moja-tabela tbody tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+/* Hover efekat */
+.moja-tabela tbody tr:hover {
+  background: #eaf1ff;
+  transition: 0.2s;
+}
+
+/* Poruka */
+.nema-podataka {
+  text-align: center;
+  padding: 15px;
+  margin-top: 15px;
+  background: #f7f7fc;
+  border-radius: 12px;
+  color: #666;
+}
+
+.dugme-preuzimanje {
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #004080;
+  color: #fff;
+}
+
+.header-sekcija {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background: #f7f8fc;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid #e2e2ee;
+}
+
+/* Tekst o broju prijavljenih */
+.broj-prijavljenih {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.naziv-obaveze {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.rok {
+  margin: 5px 0 0;
+  font-size: 18px;
+  color: #555;
+}
+
+
+
+.domaci-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.domaci-naslov {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #2b2b60;
+}
+
+.domaci-rok {
+  font-size: 0.95rem;
+  color: #5a5a71;
+  margin-bottom: 20px;
+}
+
+.dugme-preuzimanje {
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #004080;
+  color: #fff;
+}
+
+.dugme-preuzimanje:hover {
+  background-color: #00264d;
+}
+

@@ -1,0 +1,20 @@
+<div class="container mt-4">
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="predmeti" routerLinkActive="active">Predmeti</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="nastavnici" routerLinkActive="active">Nastavnici</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="upravljanje" routerLinkActive="active">Upravljanje</a>
+    </li>
+  </ul>
+
+  <div class="tab-content p-4 shadow-sm bg-white rounded-bottom">
+      <router-outlet></router-outlet>
+  </div>
+</div>

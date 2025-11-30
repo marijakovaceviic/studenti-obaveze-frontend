@@ -1,0 +1,53 @@
+<div class="container mt-4">
+
+  <div class="mb-4">
+    <h5>Izbor predmeta:</h5>
+    <select class="form-select w-50" name="predmet" [(ngModel)]="izabraniPredmet" (change)="ucitajNastavnikeZaPredmet()">
+
+      <option *ngFor="let p of sviPredmeti" [value]="p.id">
+        {{p.naziv}} - {{p.sifra}}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="izabraniPredmet" class="row">
+
+    <div class="col-md-6 border-end">
+      <h5>Nastavnici na predmetu</h5>
+
+      <ul class="list-group mt-3">
+        <li *ngFor="let n of nastavniciNaPredmetu"
+            class="list-group-item d-flex justify-content-between align-items-center">
+          
+          {{n.ime}} {{n.prezime}}
+
+          <button class="btn btn-sm dugme" (click)="obrisiSaPredmeta(n.id)">Ukloni</button>
+        </li>
+
+        <li *ngIf="nastavniciNaPredmetu.length === 0" class="list-group-item text-muted">
+          Nema nastavnika na ovom predmetu.
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <h4>Ostali nastavnici</h4>
+
+      <ul class="list-group mt-3">
+        <li *ngFor="let n of ostaliNastavnici"
+            class="list-group-item d-flex justify-content-between align-items-center">
+          
+          {{n.ime}} {{n.prezime}}
+
+          <button class="btn btn-sm dugme" (click)="dodajNaPredmet(n.id)">Dodaj</button>
+        </li>
+
+        <li *ngIf="ostaliNastavnici.length === 0" class="list-group-item text-muted">
+          Svi nastavnici su već na ovom predmetu.
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

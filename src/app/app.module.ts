@@ -10,9 +10,22 @@ import { RegistracijaComponent } from './registracija/registracija.component';
 import { PredajaComponent } from './predaja/predaja.component';
 import { PrijavaComponent } from './prijava/prijava.component';
 import { PocetnaComponent } from './pocetna/pocetna.component';
-import { ProfesorPredajaComponent } from './profesor-predaja/profesor-predaja.component';
 import { PodesavanjaComponent } from './podesavanja/podesavanja.component';
 import { PredmetiComponent } from './predmeti/predmeti.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminNastavniciComponent } from './admin-nastavnici/admin-nastavnici.component';
+import { AdminUpravljanjeComponent } from './admin-upravljanje/admin-upravljanje.component';
+import { NastavnikComponent } from './nastavnik/nastavnik.component';
+import { NastavnikOtvaranjeFormeComponent } from './nastavnik-otvaranje-forme/nastavnik-otvaranje-forme.component';
+import { NastavnikLoginComponent } from './nastavnik-login/nastavnik-login.component';
+import { NastavnikAktivneFormeComponent } from './nastavnik-aktivne-forme/nastavnik-aktivne-forme.component';
+import { NastavnikObavezeComponent } from './nastavnik-obaveze/nastavnik-obaveze.component';
+import { PredmetObavezeComponent } from './predmet-obaveze/predmet-obaveze.component';
+import { StudentObavezaComponent } from './student-obaveza/student-obaveza.component';
+import { PregledPrijavaComponent } from './pregled-prijava/pregled-prijava.component';
+import { PrijavljeniLaboviComponent } from './prijavljeni-labovi/prijavljeni-labovi.component';
+import { PrijavljeniIspitiComponent } from './prijavljeni-ispiti/prijavljeni-ispiti.component';
+import { NastavnikIstekleFormeComponent } from './nastavnik-istekle-forme/nastavnik-istekle-forme.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +35,22 @@ import { PredmetiComponent } from './predmeti/predmeti.component';
     PredajaComponent,
     PrijavaComponent,
     PocetnaComponent,
-    ProfesorPredajaComponent,
     PodesavanjaComponent,
-    PredmetiComponent
+    PredmetiComponent,
+    AdminComponent,
+    AdminNastavniciComponent,
+    AdminUpravljanjeComponent,
+    NastavnikComponent,
+    NastavnikOtvaranjeFormeComponent,
+    NastavnikLoginComponent,
+    NastavnikAktivneFormeComponent,
+    NastavnikObavezeComponent,
+    PredmetObavezeComponent,
+    StudentObavezaComponent,
+    PregledPrijavaComponent,
+    PrijavljeniLaboviComponent,
+    PrijavljeniIspitiComponent,
+    NastavnikIstekleFormeComponent
   ],
   imports: [
     BrowserModule,

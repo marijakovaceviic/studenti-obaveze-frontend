@@ -1,0 +1,22 @@
+.obaveza-stavka {
+  cursor: pointer;
+  background: #f8f9fa;
+  transition: 0.2s ease;
+}
+
+.obaveza-stavka:hover {
+  background: #e9ecef;
+}
+
+.broj-balon {
+  width: 28px;
+  height: 28px;
+  background-color: #214c8c;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+}

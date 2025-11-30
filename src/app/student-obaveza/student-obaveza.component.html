@@ -1,0 +1,44 @@
+<div class="obaveza-container">
+  <h2 class="obaveza-naslov">{{obaveza.naziv}}</h2>
+
+  <div class="obaveza-opis" *ngIf="obaveza.opis">
+    {{obaveza.opis}}
+  </div>
+
+  <div class="obaveza-rok">
+    Rok za prijavu: {{obaveza.kraj | date:'dd.MM.yyyy HH:mm'}}
+  </div>
+
+  <div class="prijava-status" *ngIf="obaveza.tip !== 'domaci'">
+    <button class="btn-prijava" (click)="togglePrijava()">
+      {{ prijavljen ? 'Odjava' : 'Prijava' }}
+    </button>
+    <div class="status-poruka">
+      {{ prijavljen ? 'Prijavljeni ste' : 'Još se niste prijavili' }}
+    </div>
+  </div>
+
+  <div *ngIf="obaveza.tip === 'domaci'">
+    <div class="mb-3">
+      <label class="form-label">Izaberite fajl:</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)" accept=".zip"/>
+    </div>
+
+    <div *ngIf="izabraniFajl" class="alert alert-secondary py-2">
+      Izabrani fajl: <strong>{{ izabraniFajl.name }}</strong>
+    </div>
+
+    <button class="btn btn-primary" (click)="predajDomaci()">
+      Predaj domaći
+    </button>
+
+    <div *ngIf="greska" class="text-danger mt-2">
+      {{greska}}
+    </div>
+
+    <div *ngIf="uspeh" class="text-success mt-2">
+      {{uspeh}}
+    </div>
+
+  </div>
+</div>

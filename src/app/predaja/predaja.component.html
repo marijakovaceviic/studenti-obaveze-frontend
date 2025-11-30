@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h3>Pregled poslatih domaćih zadataka</h3>
+
+  <div *ngIf="poslatiDomaci.length === 0">
+    <p>Nema poslatih domaćih zadataka.</p>
+  </div>
+
+  <table class="table table-striped" *ngIf="poslatiDomaci.length > 0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Predmet</th>
+        <th>Naziv obaveze</th>
+        <th>Datum predaje</th>
+        <th>Preuzmi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let o of poslatiDomaci; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ o.nazivPredmeta }}</td>
+        <td>{{ o.nazivObaveze }}</td>
+        <td>{{o.rok}}</td>
+        <!--td>{{ o.datumPredaje | date:'dd.MM.yyyy HH:mm' }}</td-->
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="preuzmiFajl(o.obavezaId)">Preuzmi</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  

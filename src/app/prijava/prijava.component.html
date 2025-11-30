@@ -1,1 +1,30 @@
-<p>prijava works!</p>
+<div class="container mt-4">
+
+  <br>
+  <div class="godine-mreza">
+    <div class="godina-kartica" *ngFor="let g of godine" (click)="selektujGodinu(g)"
+      [class.selected]="g === aktivnaGodina">
+      <div>
+        {{g}}. godina
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div *ngIf="predmetiZaGodinu && predmetiZaGodinu.length > 0">
+
+      <div *ngFor="let p of predmetiZaGodinu; let i = index"
+        class="predmet-stavka d-flex align-items-center mb-2 p-2 rounded" [routerLink]="['/predmetObaveze', p.id]">
+
+        <div class="broj-balon me-2">{{ i + 1 }}</div>
+
+        <div class="fw-semibold">{{p.naziv}} ({{p.sifra}})</div>
+      </div>
+
+    </div>
+
+    <div *ngIf="predmetiZaGodinu && predmetiZaGodinu.length === 0" class="text-muted mt-2 text-center">
+        Nema aktivnih formi za predmete ove godine.
+    </div>
+  </div>
+</div>

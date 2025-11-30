@@ -1,0 +1,29 @@
+.okvir-strane {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.prilagodjeni-tabovi {
+    background: #f7f9fc;
+    padding: 10px 20px;
+    border-bottom: 2px solid #4a90e2;
+}
+
+.prilagodjeni-tabovi .nav-link {
+    font-weight: 500;
+    color: #555;
+}
+
+.prilagodjeni-tabovi .nav-link.active {
+    color: #4a90e2;
+    font-weight: 600;
+    border-bottom: 2px solid #4a90e2;
+}
+
+.card-sadrzaj {
+    padding: 30px 35px;
+}

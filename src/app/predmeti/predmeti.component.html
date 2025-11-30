@@ -1,39 +1,41 @@
-<div class="container-fluid">
-    <br>
-<form (ngSubmit)="dodavanjePredemeta()" class="ms-5">
-  <div class="mb-3">
-    <label class="form-label">Naziv predmeta:</label>
-    <input type="text" name="naziv" class="form-control w-25" [(ngModel)]="naziv" />
-  </div>
+<div class="container mt-4">
 
-  <div class="mb-3">
-    <label class="form-label">Šifra:</label>
-    <input type="text" name="sifra" class="form-control w-25" [(ngModel)]="sifra" />
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label d-block">Godina:</label>
-    <div class="form-check form-check-inline" *ngFor="let g of [1,2,3,4]">
-      <input type="radio" name="godina" [id]="'godina' + g" class="form-check-input" [value]="g" [(ngModel)]="godina" />
-      <label [for]="'godina' + g">{{g}}.</label>
+  <h5>Dodavanje predmeta</h5>
+  <form (ngSubmit)="dodavanjePredemeta()" class="mt-3">
+    <div class="mb-3">
+      <label class="form-label">Naziv predmeta:</label>
+      <input type="text" name="naziv" class="form-control w-25" [(ngModel)]="naziv" />
     </div>
-  </div>
 
-  <div class="mb-3">
-    <label class="form-label d-block">Odsek:</label>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="odsek" id="si" value="si" [(ngModel)]="odsek" />
-      <label for="si">Softversko inženjerstvo (SI)</label>
+    <div class="mb-3">
+      <label class="form-label">Šifra:</label>
+      <input type="text" name="sifra" class="form-control w-25" [(ngModel)]="sifra" />
     </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="odsek" id="rti" value="rti" [(ngModel)]="odsek" />
-      <label for="rti">Računarska tehnika i informatika (RTI)</label>
-    </div>
-  </div>
 
-  <button type="submit" class="dugmePotvrda">Dodaj predmet</button>
-</form>
-<div>
-  {{greska}}
-</div>
+    <div class="mb-3">
+      <label class="form-label d-block">Godina:</label>
+      <div class="form-check form-check-inline" *ngFor="let g of [1,2,3,4]">
+        <input type="radio" name="godina" [id]="'godina' + g" class="form-check-input" [value]="g"
+          [(ngModel)]="godina" />
+        <label [for]="'godina' + g">{{g}}.</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-block">Odsek:</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="odsek" id="si" value="si" [(ngModel)]="odsek" />
+        <label for="si">Softversko inženjerstvo (SI)</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="odsek" id="rti" value="rti" [(ngModel)]="odsek" />
+        <label for="rti">Računarska tehnika i informatika (RTI)</label>
+      </div>
+    </div>
+
+    <button type="submit" class="dugmePotvrda">Dodaj predmet</button>
+  </form>
+  <div>
+    {{greska}}
+  </div>
 </div>

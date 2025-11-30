@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4 ms-5">
+        <br> <br>
+        <h3>Prijava</h3>
+        <table>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="email" [(ngModel)]="email"> @student.etf.bg.ac.rs</td>
+        </tr>
+        <tr>
+            <td>Lozinka:</td>
+            <td><input type="password" name="lozinka" [(ngModel)]="lozinka"></td>
+        </tr>
+        </table>
+        <div class = "greska">
+            {{greska}}
+        </div>
+        <br>
+        <button (click)="login()" class="dugmePotvrda">Prijava</button>
+
+        <br>
+        <hr>
+    </div>
+  </div>
+</div>

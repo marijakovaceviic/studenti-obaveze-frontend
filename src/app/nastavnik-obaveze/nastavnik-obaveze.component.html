@@ -1,0 +1,59 @@
+<div *ngIf="obaveza.tip !== 'domaci'">
+    <div class="header-sekcija">
+        <h4 class="naziv-obaveze">{{obaveza.naziv}}</h4> <br>
+        <p class="rok">Rok: {{obaveza.kraj | date:'dd.MM.yyyy HH:mm'}}</p> <br>
+        <p class="broj-prijavljenih">
+            Ukupno prijavljenih: <strong>{{prijavljeni.length}}</strong>
+        </p>
+        <button class="dugme-preuzimanje" (click)="preuzmiExcel()">
+            Preuzmi spisak
+        </button>
+
+    </div>
+    <div class="lista-prijavljenih">
+
+        <h3 class="naslov-tabele">Prijavljeni studenti</h3>
+
+        <table class="moja-tabela">
+            <thead>
+                <tr>
+                    <th>RB</th>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Broj indeksa</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let p of prijavljeni; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ p.ime }}</td>
+                    <td>{{ p.prezime }}</td>
+                    <td>{{p.godinaUpisa}} / {{formatIndeksa(p.brIndeksa)}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="prijavljeni.length === 0" class="nema-podataka">
+            Nema prijavljenih studenata za ovu obavezu.
+        </div>
+
+    </div>
+</div>
+
+
+<div *ngIf="obaveza.tip === 'domaci'" class="domaci-container">
+
+    <h4>{{ obaveza.naziv }}</h4>
+
+    <p class="domaci-rok">Rok: {{ obaveza.kraj | date:'dd.MM.yyyy HH:mm' }}</p>
+    <div *ngIf="brojRadova !== 0">
+        <p class="broj-prijavljenih"> Broj radova: <strong>{{brojRadova}}</strong></p>
+        <button class="dugme-preuzimanje" (click)="preuzmiSveRadove()">Preuzmi arhivu</button>
+    </div>
+    
+    <div *ngIf="brojRadova === 0" class="nema-podataka">
+        Nema predatih radova za ovu obavezu.
+    </div>
+
+</div>

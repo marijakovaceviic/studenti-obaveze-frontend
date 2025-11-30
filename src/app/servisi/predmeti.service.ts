@@ -20,4 +20,37 @@ export class PredmetiService {
     }
     return this.http.post<number>(`${this.url}/dodavanje`, data);
   }
+
+  dohvatanjeSvihPredmeta(){
+    return this.http.get<Predmet[]>(`${this.url}/sviPredmeti`);
+  }
+
+  cuvanjeIzabranihPredmeta(izabrani: number[], studentId: number){
+    const data = {
+      izabraniPredmeti: izabrani,
+      studentId: studentId
+    }
+    return this.http.post<number>(`${this.url}/izborPredmeta`, data);
+  }
+
+  dohvatanjeIzabranihPredmeta(id: number){
+    return this.http.get<Predmet[]>(`${this.url}/predmetiZaStudenta/${id}`);
+  }
+
+  dohvatanjePredmetaZaNastavnika(id: number){
+    return this.http.get<Predmet[]>(`${this.url}/predmetiZaNastavnika/${id}`);
+  }
+
+  dohvatanjeGodinaKojeStudentPrati(idStudent: number) {
+    return this.http.get<number[]>(`${this.url}/godine/${idStudent}`);
+  }
+
+  dohvatanjePredmetaSaAktivnimObavezama(idStudent: number, godina: number) {
+    return this.http.get<Predmet[]>(`${this.url}/predmetiSaAktivnimObavezama/${idStudent}/${godina}`);
+  }
+
+  dohvatanjePredmetaSaAktivnimObavezamaZaGodinu(godina: number) {
+    return this.http.get<Predmet[]>(`${this.url}/aktivneObavezeZaGodinu/${godina}`);
+  }
+
 }

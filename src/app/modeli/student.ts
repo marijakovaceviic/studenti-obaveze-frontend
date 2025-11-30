@@ -1,4 +1,5 @@
 export class Student{
+    id: number = 0;
     email: string = "";
     lozinka: string = "";
     ime: string = "";

@@ -1,0 +1,49 @@
+.prijave-container {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    margin-top: 20px;
+}
+
+.blok-prijava {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.naslov-sekcije {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 5px;
+}
+
+/* tabela */
+.moja-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.moja-tabela th, .moja-tabela td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.moja-tabela th {
+    background: #f0f4ff;
+}
+
+.moja-tabela tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.moja-tabela tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.nema {
+    font-style: italic;
+    color: #666;
+    margin-top: 5px;
+}

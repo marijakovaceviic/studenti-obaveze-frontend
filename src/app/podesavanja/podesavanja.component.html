@@ -1,80 +1,157 @@
 <div class="container mt-4">
-  <ul class="nav nav-tabs">
-    <li class="nav-item" (click)="aktivanTab = 'profil'">
-      <a class="nav-link" [class.active]="aktivanTab === 'profil'">Profil</a>
-    </li>
-    <li class="nav-item" (click)="aktivanTab = 'lozinka'">
-      <a class="nav-link" [class.active]="aktivanTab === 'lozinka'"> Promena lozinke</a>
-    </li>
-    <li class="nav-item" (click)="aktivanTab = 'predmeti'">
-      <a class="nav-link" [class.active]="aktivanTab === 'predmeti'">Smer i predmeti</a>
-    </li>
-  </ul>
+    <ul class="nav nav-tabs">
+        <li class="nav-item" (click)="aktivanTab = 'profil'">
+            <a class="nav-link" [class.active]="aktivanTab === 'profil'">Profil</a>
+        </li>
+        <li class="nav-item" (click)="aktivanTab = 'lozinka'">
+            <a class="nav-link" [class.active]="aktivanTab === 'lozinka'"> Promena lozinke</a>
+        </li>
+        <li class="nav-item" (click)="aktivanTab = 'predmeti'">
+            <a class="nav-link" [class.active]="aktivanTab === 'predmeti'">Smer i predmeti</a>
+        </li>
+    </ul>
 
-  <div class="tab-content p-4 shadow-sm bg-white rounded-bottom">
-    <div *ngIf="aktivanTab === 'profil'">
-      
-        <div class="d-flex mt-5">
-            <div class="card shadow-sm p-4" style="border-radius: 12px; background-color: #fafafa;">
-                
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Ime:</span>
-                    <span class="fw-semibold">{{ulogovan.ime}}</span>
+    <div class="tab-content p-4 shadow-sm bg-white rounded-bottom">
+        <div *ngIf="aktivanTab === 'profil'">
+
+            <div class="d-flex mt-5">
+                <div class="card shadow-sm p-4" style="border-radius: 12px; background-color: #fafafa;">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Ime:</span>
+                        <span class="fw-semibold">{{ulogovan.ime}}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Prezime:</span>
+                        <span class="fw-semibold">{{ulogovan.prezime}}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Indeks:</span>
+                        <span class="fw-semibold">{{ulogovan.godinaUpisa}}/{{formatIndeksa(ulogovan.brIndeksa)}}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Email:</span>
+                        <span class="fw-semibold">{{ulogovan.email}}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Smer:</span>
+                        <span class="fw-semibold">{{ulogovan.smer}}</span>
+                    </div>
+
                 </div>
-
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Prezime:</span>
-                    <span class="fw-semibold">{{ulogovan.prezime}}</span>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Indeks:</span>
-                    <span class="fw-semibold">{{ulogovan.godinaUpisa}}/{{ulogovan.brIndeksa}}</span>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Email:</span>
-                    <span class="fw-semibold">{{ulogovan.email}}</span>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted">Smer:</span>
-                    <span class="fw-semibold">{{ulogovan.smer}}</span>
-                </div>
-
             </div>
+
+
         </div>
+        <div *ngIf="aktivanTab === 'lozinka'">
+
+            <form (ngSubmit)="promenaLozinke()">
+                <div class="mb-3">
+                    <label class="form-label">Stara lozinka:</label>
+                    <input type="password" name="staraLozinka" class="form-control" [(ngModel)]="staraLozinka" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nova lozinka:</label>
+                    <input type="password" name="novaLozinka" class="form-control" [(ngModel)]="novaLozinka" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Potvrda nove lozinke:</label>
+                    <input type="password" name="potvrdaLozinke" class="form-control" [(ngModel)]="potvrdaLozinke" />
+                </div>
+
+                <button type="submit" class="dugmePotvrda">Promeni lozinku</button>
+                <div>
+                    {{greska}}
+                </div>
+            </form>
 
 
+        </div>
+        <div *ngIf="aktivanTab === 'predmeti'">
+            <form (ngSubmit)="sacuvajIzbor()" class="ms-5">
+                <div class="mb-3">
+                    <label class="form-label d-block">Godina:</label>
+                    <div class="form-check form-check-inline" *ngFor="let g of [1, 2, 3, 4]">
+                        <input type="checkbox" class="form-check-input" [id]="'godina' + g" [value]="g"
+                            (change)="izborGodinaZaPracenje(g, $event)" [checked]="izabraneGodine.includes(g)" />
+                        <label class="form-check-label" [for]="'godina' + g">{{g}}.</label>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label d-block">Odsek:</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="odsek" id="si" value="si" [(ngModel)]="odsek"
+                            (change)="osveziPrikaz()" />
+                        <label for="si">Softversko inženjerstvo (SI)</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="odsek" id="rti" value="rti"
+                            [(ngModel)]="odsek" (change)="osveziPrikaz()" />
+                        <label for="rti">Računarska tehnika i informatika (RTI)</label>
+                    </div>
+                </div>
+
+                <div class="accordion" id="predmetiAccordion">
+
+                    <div class="accordion-item" *ngFor="let g of godineZaPrikaz">
+                        <h2 class="accordion-header" [id]="'heading' + g">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse' + g">
+                                {{g}}. godina
+                            </button>
+                        </h2>
+
+                        <div [id]="'collapse' + g" class="accordion-collapse collapse"
+                            [attr.aria-labelledby]="'heading' + g" data-bs-parent="#predmetiAccordion">
+
+                            <div class="accordion-body">
+
+                                <div *ngFor="let p of filtriraniPredmeti">
+                                    <div *ngIf="p.godina === g" class="form-check mb-2">
+                                        <input type="checkbox" class="form-check-input" [id]="p.id"
+                                            [checked]="izabraniPredmeti.includes(p.id)"
+                                            (change)="izborPredmeta(p.id, $event)" />
+
+                                        <label class="form-check-label" [for]="p.id">{{p.naziv}} ({{p.sifra}})</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="dugmePotvrda">Sačuvaj izbor</button>
+            </form>
+
+            <div class="mt-4 ms-5">
+                <a href="#" (click)="dohvatiIzabranePredmete(); $event.preventDefault()">
+                {{ prikaziIzabrane ? 'Sakrij izabrane predmete' : 'Prikaži izabrane predmete' }}
+                </a>
+            </div>
+
+            <div *ngIf="prikaziIzabrane" class="mt-3  ms-5">
+                <ul class="list-group">
+                    <li *ngFor="let p of zapamceniIzborPredmeta" class="list-group-item d-flex justify-content-between">
+                    <span>
+                        {{p.naziv}} ({{p.sifra}})
+                    </span>
+                    <small class="text-muted">
+                        {{p.godina}}. godina — {{p.odsek.toUpperCase()}}
+                    </small>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
     </div>
-    <div *ngIf="aktivanTab === 'lozinka'">
-      
-        <form (ngSubmit)="promenaLozinke()">
-            <div class="mb-3">
-                <label class="form-label">Stara lozinka:</label>
-                <input type="password" name = "staraLozinka" class="form-control" [(ngModel)]="staraLozinka"/>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Nova lozinka:</label>
-                <input type="password" name="novaLozinka" class="form-control" [(ngModel)]="novaLozinka"/>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Potvrda nove lozinke:</label>
-                <input type="password" name="potvrdaLozinke" class="form-control" [(ngModel)]="potvrdaLozinke"/>
-            </div>
-
-            <button type="submit" class="dugmePotvrda">Promeni lozinku</button>
-            <div>
-                {{greska}}
-            </div>
-        </form>
-
-
-    </div>
-    <div *ngIf="aktivanTab === 'predmeti'">
-      <!-- deo sa checkiranjem predmeta -->
-    </div>
-  </div>
 </div>
