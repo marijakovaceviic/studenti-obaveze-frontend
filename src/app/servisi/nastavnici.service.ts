@@ -20,6 +20,23 @@ export class NastavniciService {
     return this.http.post<number>(`${this.url}/registracija`, data);
   }
 
+  prijava(email: string, lozinka: string){
+    const data = {
+      email : email,
+      lozinka: lozinka
+    }
+    return this.http.post<Nastavnik>(`${this.url}/prijava`, data);
+  }
+
+  promenaLozinke(email: string, lozinka: string, novaLozinka: string){
+    const data = {
+      email: email,
+      lozinka: lozinka,
+      novaLozinka: novaLozinka
+    }
+    return this.http.post<number>(`${this.url}/promenaLozinke`, data);
+  }
+
   dohvatanjeSvihNastavnika(){
     return this.http.get<Nastavnik[]>(`${this.url}/sviNastavnici`);
   }

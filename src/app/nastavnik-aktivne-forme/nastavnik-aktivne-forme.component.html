@@ -1,14 +1,12 @@
 <div class="accordion" id="predmetiAccordion" *ngIf="predmeti?.length">
     <div class="accordion-item" *ngFor="let p of predmeti">
-        <h2 class="accordion-header" [id]="'heading' + p.id">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                [attr.data-bs-target]="'#collapse' + p.id" aria-expanded="false"
-                [attr.aria-controls]="'collapse' + p.id">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+            [attr.data-bs-target]="'#c' + p.id">
                 {{p.naziv}} - {{p.sifra}}
             </button>
         </h2>
-
-        <div [id]="'collapse' + p.id" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + p.id"
+        <div [id]="'c' + p.id" class="accordion-collapse collapse"
             data-bs-parent="#predmetiAccordion" (shown.bs.collapse)="ucitajObaveze(p.id)">
             <div class="accordion-body">
                 <div *ngFor="let o of obavezeMapa[p.id]">

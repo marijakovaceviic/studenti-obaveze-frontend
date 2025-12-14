@@ -10,14 +10,8 @@
   </div>
 </header>
 
-<!--div class="container-fluid zaglavlje" *ngIf="!isLoginPage">
-  <a routerLink="/login" class="display-6 login-link">Login</a>
-  <span *ngIf="!isHomePage" class="separator mx-2">|</span>
-  <a *ngIf="!isHomePage" routerLink="/" class="display-6 login-link">Početna strana</a>
-</div-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm px-3 custom-navbar">
   
-  <!-- Hamburger dugme -->
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSadrzaj">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -26,18 +20,25 @@
 
     <ul class="navbar-nav ms-auto">
 
-      <li class="nav-item" *ngIf="!isHomePage">
+      <li class="nav-item" *ngIf="gostStrana()">
         <a class="nav-link fs-5" routerLink="/">Početna strana</a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="gostStrana()">
         <a class="nav-link fs-5" routerLink="/podesavanja">Podešavanja</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link fs-5" routerLink="/login">Login</a>
+      <li class="nav-item" *ngIf="gostStrana()">
+        <a class="nav-link fs-5" routerLink="/login">Prijava</a>
       </li>
 
+      <li class="nav-item" *ngIf="nastavnikStrana()">
+        <a class="nav-link fs-5" routerLink="/nastavnik/login">Prijava</a>
+      </li>
+
+      <li class="nav-item" *ngIf="nastavnikStrana()">
+        <a class="nav-link fs-5" routerLink="/nastavnik/promenaLozinke">Promena lozinke</a>
+      </li>
     </ul>
   </div>
 </nav>

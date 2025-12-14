@@ -1,0 +1,9 @@
+<div>
+  <button class="lab-dugme" (click)="prethodnaNedelja()">←</button>
+
+  <span>{{ prikazNedelje }}</span>
+
+  <button class="lab-dugme" (click)="sledecaNedelja()">→</button>
+</div>
+<br>
+<full-calendar #kalendar [options]="calendarOptions"></full-calendar>

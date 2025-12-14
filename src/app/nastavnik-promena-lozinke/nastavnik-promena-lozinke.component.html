@@ -1,0 +1,29 @@
+<div class="container mt-4">
+    <h3>Promena lozinke</h3>
+
+    <form (ngSubmit)="promenaLozinke()" #forma="ngForm">
+
+        <div class="mb-3">Stara lozinka:
+            <input type="password" name="staraLozinka" required [(ngModel)]="staraLozinka" class="form-control">
+        </div>
+
+        <div class="mb-3">Nova lozinka:
+            <input type="password" name="novaLozinka" required [(ngModel)]="novaLozinka" class="form-control">
+        </div>
+
+        <div class="mb-3">Potvrda lozinke:
+            <input type="password" name="potvrdaLozinke" required [(ngModel)]="potvrdaLozinke" class="form-control">
+        </div>
+
+        <button type="submit" class="moj-btn" [disabled]="forma.invalid">Promena lozinke</button>
+    </form>
+
+    <div *ngIf="greska" class="text-danger mt-2">
+        {{greska}}
+    </div>
+
+    <div *ngIf="uspeh" class="text-success mt-2">
+        {{uspeh}}
+    </div>
+
+</div>

@@ -1,0 +1,66 @@
+<div class="dugme-lab">
+  <button class="btn btn-outline-secondary btn-sm" routerLink="/pregledLaboratorija">
+    Pregled rezervacija
+  </button>
+</div>
+
+
+<div class="container mt-3">
+    <div class="mb-3">
+        <label class="form-label">Naziv obaveze</label>
+        <input type="text" class="form-control" [(ngModel)]="nazivObaveze" placeholder="Unesite naziv obaveze">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Akronim predmeta</label>
+        <input type="text" class="form-control" [(ngModel)]="akronim" placeholder="Unesite akronim predmeta">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Datum</label>
+        <input type="date" class="form-control" [(ngModel)]="datum" (change)="slobodneLaboratorije()">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Vreme od</label>
+        <input type="time" class="form-control" [(ngModel)]="vremeOd" (change)="slobodneLaboratorije()">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Vreme do</label>
+        <input type="time" class="form-control" [(ngModel)]="vremeDo" (change)="slobodneLaboratorije()">
+    </div>
+
+    <hr>
+
+    <h5>Dostupne laboratorije:</h5>
+
+    <div *ngIf="dostupneLaboratorije.length === 0">
+        <p class="text-danger">Nema dostupnih laboratorija za izabrani termin.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3" *ngFor="let lab of dostupneLaboratorije">
+
+            <div class="card shadow-sm selectable-card" [class.selected]="izabraneLaboratorije.includes(lab.id)"
+                (click)="izbor(lab.id)">
+
+                <div class="card-body">
+                    <h6 class="card-title">{{ lab.naziv }}</h6>
+                    <p class="card-text text-muted">
+                        Kapacitet: {{ lab.kapacitet }}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <button class="moj-btn mt-3" [disabled]="izabraneLaboratorije.length === 0" (click)="rezervisi()">
+        Potvrdi izbor
+    </button>
+    <div *ngIf="greska" class="text-danger mb-2">
+      {{greska}}
+    </div>
+
+    <div *ngIf="uspeh" class="text-success mb-2">
+      {{uspeh}}
+    </div>
+</div>

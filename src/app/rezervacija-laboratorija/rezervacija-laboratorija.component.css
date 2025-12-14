@@ -1,0 +1,33 @@
+.selectable-card {
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.selectable-card:hover {
+    border-color: #2763bc;
+}
+
+.selected {
+    border-color: #0d6efd !important;
+    background-color: #e7f1ff;
+}
+
+.dugme-lab {
+    display: flex;
+    justify-content: flex-end;
+    padding: 6px 12px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #dcdcdc;
+    border-radius: 4px;
+}
+
+.dugme-lab .btn {
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.dugme-lab .btn:hover {
+    background-color: #bdc2c7;
+}

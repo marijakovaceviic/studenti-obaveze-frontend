@@ -26,6 +26,17 @@ import { PregledPrijavaComponent } from './pregled-prijava/pregled-prijava.compo
 import { PrijavljeniLaboviComponent } from './prijavljeni-labovi/prijavljeni-labovi.component';
 import { PrijavljeniIspitiComponent } from './prijavljeni-ispiti/prijavljeni-ispiti.component';
 import { NastavnikIstekleFormeComponent } from './nastavnik-istekle-forme/nastavnik-istekle-forme.component';
+import { NastavniciStatistikaComponent } from './nastavnici-statistika/nastavnici-statistika.component';
+import { NgChartsModule } from 'ng2-charts';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { PredmetStatistikaComponent } from './predmet-statistika/predmet-statistika.component';
+import { RezervacijaLaboratorijaComponent } from './rezervacija-laboratorija/rezervacija-laboratorija.component';
+import { PregledRezervacijaLabComponent } from './pregled-rezervacija-lab/pregled-rezervacija-lab.component';
+import { PregledLaboratorijaComponent } from './pregled-laboratorija/pregled-laboratorija.component';
+import { PrijavaDemenostratoriComponent } from './prijava-demenostratori/prijava-demenostratori.component';
+import { DemonstratoriFormaComponent } from './demonstratori-forma/demonstratori-forma.component';
+import { DemonstratoriPrijavljeniComponent } from './demonstratori-prijavljeni/demonstratori-prijavljeni.component';
+import { NastavnikPromenaLozinkeComponent } from './nastavnik-promena-lozinke/nastavnik-promena-lozinke.component';
 
 @NgModule({
   declarations: [
@@ -50,13 +61,24 @@ import { NastavnikIstekleFormeComponent } from './nastavnik-istekle-forme/nastav
     PregledPrijavaComponent,
     PrijavljeniLaboviComponent,
     PrijavljeniIspitiComponent,
-    NastavnikIstekleFormeComponent
+    NastavnikIstekleFormeComponent,
+    NastavniciStatistikaComponent,
+    PredmetStatistikaComponent,
+    RezervacijaLaboratorijaComponent,
+    PregledRezervacijaLabComponent,
+    PregledLaboratorijaComponent,
+    PrijavaDemenostratoriComponent,
+    DemonstratoriFormaComponent,
+    DemonstratoriPrijavljeniComponent,
+    NastavnikPromenaLozinkeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgChartsModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

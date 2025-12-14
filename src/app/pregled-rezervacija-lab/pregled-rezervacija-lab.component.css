@@ -1,0 +1,14 @@
+.lab-dugme {
+  background-color: #e9ecef; 
+  border: 1px solid #bfc4c9;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 500;
+}
+
+.lab-dugme:hover {
+  background-color: #d6d9dc; 
+}

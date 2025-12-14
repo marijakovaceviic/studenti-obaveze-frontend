@@ -32,22 +32,6 @@
   text-align: center;
 }
 
-.btn-prijava {
-  padding: 10px 24px;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background-color: #004080;
-  color: #fff;
-}
-
-.btn-prijava:hover {
-  background-color: #00264d;
-}
-
 .status-poruka {
   margin-top: 8px;
   font-size: 0.9rem;

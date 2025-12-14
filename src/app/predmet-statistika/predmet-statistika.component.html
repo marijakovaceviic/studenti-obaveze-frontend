@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8">
+            <div style="display: block;">
+                <canvas baseChart [data]="barChartData1" [labels]="labelePrijave" [options]="barChartOptions"
+                    [legend]="barChartLegend" [type]="'bar'">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div style="display: block;">
+                <canvas baseChart [data]="barChartData2" [labels]="labelePredaje" [options]="barChartOptions"
+                    [legend]="barChartLegend" [type]="'bar'">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>

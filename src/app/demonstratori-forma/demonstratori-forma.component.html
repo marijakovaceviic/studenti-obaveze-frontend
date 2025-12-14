@@ -1,0 +1,26 @@
+<div class="container mt-4">
+
+  <h3 class="mb-3">Otvaranje prijave za demonstratore</h3>
+
+  <form (ngSubmit)="cuvanjeForme()" enctype="multipart/form-data">
+
+    <div class="mb-3">
+      <label class="form-label">Datum početka</label>
+      <input type="datetime-local" name="datumOd" [(ngModel)]="datumOd" class="form-control"  required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Datum završetka</label>
+      <input type="datetime-local" name="datumDo" [(ngModel)]="datumDo" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">PDF dokument (pravila)</label>
+      <input type="file" class="form-control" accept="application/pdf" (change)="izabranPdf($event)" />
+    </div>
+
+    <button class="moj-btn" type="submit">Sačuvaj</button>
+
+  </form>
+
+</div>

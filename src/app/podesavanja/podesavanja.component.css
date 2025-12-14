@@ -1,0 +1,15 @@
+.prikaz-izbor {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 4px;
+  width: fit-content;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.prikaz-izbor:hover {
+  background-color: #e0e0e0;
+}
+
+

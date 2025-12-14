@@ -1,6 +1,6 @@
 <div class="okvir-strane">
 
-  <ul class="nav nav-tabs prilagodjeni-tabovi">
+  <ul class="nav nav-tabs nav-bar-tabovi">
     <li class="nav-item">
       <a class="nav-link" routerLink="otvaranjeForme" routerLinkActive="active">Otvaranje forme</a>
     </li>
@@ -11,6 +11,19 @@
 
     <li class="nav-item">
       <a class="nav-link" routerLink="istekleForme" routerLinkActive="active">Arhiva formi</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="statistika" routerLinkActive="active">Statistika</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="rezervacija" routerLinkActive="active">Rezervacija laboratorija</a>
+    </li>
+    <li class="nav-item" *ngIf="zaduzen">
+      <a class="nav-link" routerLink="demonstratoriForme" routerLinkActive="active">Demonstratori forme</a>
+    </li>
+    <li class="nav-item" *ngIf="zaduzen">
+      <a class="nav-link" routerLink="demonstratoriPrijave" routerLinkActive="active">Demonstratori prijave</a>
     </li>
   </ul>
 

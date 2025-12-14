@@ -1,28 +1,31 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-8 ms-5">
-            <br> <br>
-            <h4>Registracja</h4>
-            <form name="forma" #forma="ngForm" (ngSubmit)="registracija()">
-                <table>
-                    <tr>
-                        <td>Email:</td>
-                        <td><input type="email" name="email" [(ngModel)]="korIme" required> @student.etf.bg.ac.rs</td>
-                    </tr>
-                    <tr>
-                        <td>Lozinka:</td>
-                        <td><input type="password" name="password" [(ngModel)]="lozinka" required></td>
-                    </tr>
-                    <br>
-                    <tr>
-                        <td colspan="2">
-                            <button type="submit" [disabled]="forma.invalid" class="dugmePotvrda">Registracija</button>
-                        </td>        
-                    </tr>
-                </table>
-            </form>
-            <div class="greska">
-                {{greska}}
-            </div>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="registracija-container">
+
+    <h3 class="text-center mb-4">Registracija</h3>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <div class="input-group">
+          <input type="email" name="email" [(ngModel)]="korIme" class="form-control" required>
+          <span class="input-group-text">@student.etf.bg.ac.rs</span>
         </div>
-    </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Lozinka</label>
+        <input type="password" name="password" [(ngModel)]="lozinka" class="form-control" required>      
+      </div>
+
+      <div *ngIf="greska" class="greska">
+        {{greska}}
+      </div>
+      <div *ngIf="uspeh" class="text-success mb-2">
+        {{uspeh}}
+     </div>
+
+      <button class="moj-btn w-100 mt-2" (click)="registracija()">
+        Registracija
+      </button>
+
+  </div>
+</div>

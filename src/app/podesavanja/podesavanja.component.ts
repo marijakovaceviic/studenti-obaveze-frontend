@@ -17,10 +17,12 @@ export class PodesavanjaComponent {
   aktivanTab: string = 'profil';
   ulogovan: Student = new Student();
 
-  staraLozinka:string = "";
-  novaLozinka:string = "";
-  potvrdaLozinke:string = "";
-  greska:string = "";
+  staraLozinka: string = "";
+  novaLozinka: string = "";
+  potvrdaLozinke: string = "";
+  greskaLozinka: string = "";
+  greskaPredmeti: string = "";
+  uspeh: string = "";
 
   izabraneGodine:number[] = [];
   odsek:string = "";
@@ -41,53 +43,54 @@ export class PodesavanjaComponent {
       this.predmetiS.dohvatanjeSvihPredmeta().subscribe(
         predmeti=>{
           this.sviPredmeti = predmeti;
-          this.filtriraniPredmeti = this.sviPredmeti; //mislim da mi ne treba vise ovo
+          this.filtriraniPredmeti = this.sviPredmeti;  
         }
       )
     }
   }
 
   promenaLozinke(){
+    this.greskaLozinka = "";
+    this.uspeh = "";
+
     let regexLozinka = /^(?=[a-zA-Z])(?=.*\d)(?=.*[A-Z])(?=(?:.*[a-z]){3,})(?=.*[!@#$%^&*])[A-Za-z][A-Za-z\d!@#$%^&*]{6,10}$/;
 
     if (this.staraLozinka == "") {
-      this.greska = "Nije uneta stara lozinka!";
+      this.greskaLozinka = "Nije uneta stara lozinka!";
     }
     else if(this.novaLozinka == ""){
-      this.greska = "Nije uneta nova lozinka!";
+      this.greskaLozinka = "Nije uneta nova lozinka!";
     }
     else if(this.potvrdaLozinke == ""){
-      this.greska = "Nije uneta potvrda nove lozinke!";
+      this.greskaLozinka = "Nije uneta potvrda nove lozinke!";
     }
     else if (!regexLozinka.test(this.novaLozinka)){
-      this.greska = "Nova lozinka nije u dobrom formatu!";
+      this.greskaLozinka = "Nova lozinka mora počinjati slovom i mora imati od 6 do 10 karaktera, od toga bar jedno veliko slovo, tri mala, jedan broj i jedan specijalni karakter!";
     }
     else if (this.novaLozinka != this.potvrdaLozinke){
-      this.greska = "Potvrda lozinke se razlikuje od unete nove lozinke";
+      this.greskaLozinka = "Potvrda lozinke se razlikuje od unete nove lozinke";
     }
     else{
-      const kriptovanaLozinka = CryptoJS.SHA256(this.staraLozinka).toString();
-      const kriptovanaNova = CryptoJS.SHA256(this.novaLozinka).toString();
-      if (kriptovanaLozinka != kriptovanaNova){
-        this.greska = "Netačna stara lozinka!";
-      }
-      else{
-        this.studentS.promenaLozinke(this.ulogovan.email, kriptovanaNova).subscribe(
+        this.studentS.promenaLozinke(this.ulogovan.email, this.staraLozinka, this.novaLozinka).subscribe(
           data =>{
             if (data != 0){
-              this.greska = "Uspešno promenjena lozinka!";
-              //resetovati formu
+              this.uspeh = "Uspešno promenjena lozinka! Prijavite se ponovo.";
+              this.staraLozinka = "";
+              this.novaLozinka = "";
+              this.potvrdaLozinke = "";
+              localStorage.removeItem("ulogovan");
+            }
+            else{
+              this.greskaLozinka = "Pogrešna lozinka!"
             }
           }
         )
       }
-    }
   }
 
   izborGodinaZaPracenje(godina:number, event: any){
     if (event.target.checked) {
       this.izabraneGodine.push(godina);
-
     } 
     else {
       this.izabraneGodine = this.izabraneGodine.filter(g => g !== godina);
@@ -97,6 +100,8 @@ export class PodesavanjaComponent {
 
 
   osveziPrikaz() {
+    this.greskaPredmeti = "";
+
     this.godineZaPrikaz = this.izabraneGodine.length === 0 ? [1,2,3,4] : this.izabraneGodine;
 
     this.filtriraniPredmeti = this.sviPredmeti.filter(p => 
@@ -106,6 +111,7 @@ export class PodesavanjaComponent {
   }
 
   izborPredmeta(id: number, event:any){
+    this.greskaPredmeti = "";
     if (event.target.checked) {
       this.izabraniPredmeti.push(id);
     } else {
@@ -114,14 +120,21 @@ export class PodesavanjaComponent {
   }
 
   sacuvajIzbor(){
-    if (this.izabraniPredmeti.length == 0 && this.izabraneGodine.length == 0 && this.odsek == "") return;
-    else if (this.izabraniPredmeti.length == 0 ){
-      this.izabraniPredmeti = this.filtriraniPredmeti.map(p => p.id)
+    this.greskaPredmeti = "";
+
+    if (this.izabraniPredmeti.length === 0 && this.izabraneGodine.length === 0 && this.odsek === "") {
+      this.greskaPredmeti = "Morate izabrati godinu, odsek ili predmete!"
+      return;
     }
-    this.predmetiS.cuvanjeIzabranihPredmeta(this.izabraniPredmeti, this.ulogovan.id).subscribe(
+    const predmetiZaSlanje = this.izabraniPredmeti.length > 0 ? this.izabraniPredmeti : this.filtriraniPredmeti.map(p => p.id);
+    
+    this.predmetiS.cuvanjeIzabranihPredmeta(predmetiZaSlanje, this.ulogovan.id).subscribe(
       data =>{
         if (data != 0){
-          //osvezavanje forme, poruka
+          this.izabraniPredmeti = [];
+          this.izabraneGodine = [];
+          this.odsek = "";
+          this.filtriraniPredmeti = this.sviPredmeti;
         }
       }
     )

@@ -33,10 +33,11 @@ export class StudentService {
     return this.http.post<Student>(`${this.url}/prijava`, data);
   }
 
-  promenaLozinke(email: string, novaLozinka: string){
+  promenaLozinke(email: string, staraLozinka: string, novaLozinka: string){
     const data = {
       email: email,
-      lozinka: novaLozinka
+      lozinka: staraLozinka,
+      novaLozinka: novaLozinka
     }
     return this.http.post<number>(`${this.url}/promenaLozinke`, data)
   }

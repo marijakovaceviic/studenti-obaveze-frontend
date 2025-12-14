@@ -1,7 +1,9 @@
 <div class="prijave-container">
 
     <div class="blok-prijava">
-        <h3 class="naslov-sekcije">📘 Prijavljene laboratorijske vežbe</h3>
+        <h3 class="naslov-sekcije">  
+            <img src="assets/service-icon-02.png" alt="">Prijavljene laboratorijske vežbe
+        </h3>
 
         <ng-container *ngIf="prijavljeniLabovi.length > 0; else nemaLabova">
             <table class="moja-tabela">
@@ -31,7 +33,9 @@
 
 
     <div class="blok-prijava">
-        <h3 class="naslov-sekcije">📗 Prijavljene odbrane domaćih zadataka</h3>
+        <h3 class="naslov-sekcije">  
+            <img src="assets/service-icon-01.png" alt=""> Prijavljene odbrane domaćih zadataka
+        </h3>
 
         <ng-container *ngIf="prijavljeneOdbrane.length > 0; else nemaOdbrana">
             <table class="moja-tabela">

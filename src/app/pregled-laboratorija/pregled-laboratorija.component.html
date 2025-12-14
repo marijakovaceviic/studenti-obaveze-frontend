@@ -1,0 +1,32 @@
+<div class="dugme-lab">
+  <button class="btn btn-outline-secondary btn-sm" routerLink="/nastavnik/rezervacija">
+    Rezervisanje
+  </button>
+</div>
+<div class="laboratorije-izbor d-flex justify-content-center flex-wrap gap-2 my-3">
+  <button class="lab-dugme" (click)="izabranaLab = 0" [class.aktivno]="izabranaLab === 0">
+    Sve laboratorije
+  </button>
+
+  <ng-container *ngFor="let lab of laboratorije">
+    <button class="lab-dugme" (click)="izabranaLab = lab.id" [class.aktivno]="izabranaLab === lab.id">
+      {{ lab.naziv }}
+    </button>
+  </ng-container>
+</div>
+
+
+<div *ngIf="izabranaLab !== 0">
+    <app-pregled-rezervacija-lab [idLab]="izabranaLab"></app-pregled-rezervacija-lab>
+</div>
+
+<div *ngIf="izabranaLab === 0">
+    <div *ngFor="let lab of laboratorije" class="mb-5">
+    <h3>Laboratorija {{ lab.naziv }}</h3>
+
+    <app-pregled-rezervacija-lab [idLab]="lab.id">
+    </app-pregled-rezervacija-lab>
+
+    <hr>
+</div>
+</div>

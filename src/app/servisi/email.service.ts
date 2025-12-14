@@ -21,4 +21,12 @@ export class EmailService {
   otvorenaObaveza(idObaveza: number){
     return this.http.get<number>(`${this.url}/otvorenaObaveza/${idObaveza}`);
   }
+
+  otvorenaPrijavaZaDemonstratore(){
+    return this.http.get<number>(`${this.url}/otvorenaPrijavaZaDemonstratore`);
+  }
+
+  uspesnaPrijavaZaDemonstratore(idStudent: number){
+    return this.http.get<number>(`${this.url}/uspesnaPrijavaZaDemonstratora/${idStudent}`);
+  }
 }

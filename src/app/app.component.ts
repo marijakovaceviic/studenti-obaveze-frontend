@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +10,27 @@ export class AppComponent {
   title = 'frontend';
 
   constructor(public router: Router) {}
+  trenutnaRuta: string = '';
 
-  get isLoginPage(): boolean {
-    return this.router.url === '/login';
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.trenutnaRuta = event.urlAfterRedirects;
+      }
+    });
   }
 
-  get isHomePage(): boolean {
-    return this.router.url === '/';
+
+  nastavnikStrana(): boolean {
+    return this.trenutnaRuta.startsWith('/nastavnik');
   }
+
+  adminStrana(): boolean {
+    return this.trenutnaRuta.startsWith('/admin');
+  }
+
+  gostStrana(): boolean {
+    return !this.nastavnikStrana() && !this.adminStrana();
+  }
+
 }

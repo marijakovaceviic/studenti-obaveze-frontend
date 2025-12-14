@@ -1,5 +1,5 @@
 <div class="container mt-4">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs nav-bar-tabovi">
         <li class="nav-item" (click)="aktivanTab = 'profil'">
             <a class="nav-link" [class.active]="aktivanTab === 'profil'">Profil</a>
         </li>
@@ -65,9 +65,12 @@
                     <input type="password" name="potvrdaLozinke" class="form-control" [(ngModel)]="potvrdaLozinke" />
                 </div>
 
-                <button type="submit" class="dugmePotvrda">Promeni lozinku</button>
-                <div>
-                    {{greska}}
+                <button type="submit" class="moj-btn">Promeni lozinku</button>
+                <div *ngIf="greskaLozinka" class="greska">
+                    {{greskaLozinka}}
+                </div>
+                <div *ngIf="uspeh" class="text-success mt-2">
+                    {{uspeh}}
                 </div>
             </form>
 
@@ -101,16 +104,14 @@
                 <div class="accordion" id="predmetiAccordion">
 
                     <div class="accordion-item" *ngFor="let g of godineZaPrikaz">
-                        <h2 class="accordion-header" [id]="'heading' + g">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                [attr.data-bs-target]="'#collapse' + g">
-                                {{g}}. godina
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                [attr.data-bs-target]="'#c' + g"> {{g}}. godina
                             </button>
                         </h2>
 
-                        <div [id]="'collapse' + g" class="accordion-collapse collapse"
-                            [attr.aria-labelledby]="'heading' + g" data-bs-parent="#predmetiAccordion">
-
+                        <div [id]="'c' + g" class="accordion-collapse collapse" data-bs-parent="#predmetiAccordion">
+                             
                             <div class="accordion-body">
 
                                 <div *ngFor="let p of filtriraniPredmeti">
@@ -129,16 +130,18 @@
 
                 </div>
 
-                <button type="submit" class="dugmePotvrda">Sačuvaj izbor</button>
+                <button type="submit" class="moj-btn">Sačuvaj izbor</button>
+                <div *ngIf="greskaPredmeti" class="greska">
+                    {{greskaPredmeti}}
+                </div>
             </form>
-
             <div class="mt-4 ms-5">
-                <a href="#" (click)="dohvatiIzabranePredmete(); $event.preventDefault()">
-                {{ prikaziIzabrane ? 'Sakrij izabrane predmete' : 'Prikaži izabrane predmete' }}
-                </a>
+                <div class="prikaz-izbor" (click)="dohvatiIzabranePredmete()">
+                    {{ prikaziIzabrane ? 'Sakrij izabrane predmete' : 'Prikaz izabranih predmeta' }}
+                </div>
             </div>
 
-            <div *ngIf="prikaziIzabrane" class="mt-3  ms-5">
+            <div *ngIf="prikaziIzabrane" class="mt-3  ms-5 ">
                 <ul class="list-group">
                     <li *ngFor="let p of zapamceniIzborPredmeta" class="list-group-item d-flex justify-content-between">
                     <span>

@@ -1,0 +1,59 @@
+<div class="container mt-4">
+
+  <h3 class="mb-3">Prijavljeni studenti po predmetima</h3>
+
+  <div *ngIf="prijave.length === 0" class="alert alert-info">
+    Nema prijavljenih studenata.
+  </div>
+
+  <div class="accordion" id="prijaveAccordion" *ngIf="prijave.length !== 0">
+
+    <div class="accordion-item" *ngFor="let p of prijave; let i = index">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#c' + i">
+          {{ p.nazivPredmeta }} ({{ p.sifraPredmeta }})
+        </button>
+      </h2>
+
+      <div [id]="'c' + i" class="accordion-collapse collapse" data-bs-parent="#prijaveAccordion">
+
+        <div class="accordion-body">
+
+          <div *ngIf="p.studenti.length === 0" class="text-muted">
+            Nema prijavljenih studenata za ovaj predmet.
+          </div>
+
+          <div *ngIf="p.studenti.length > 0" class="d-flex justify-content-between align-items-center mb-2">
+            <span>Broj prijavljenih studenata: {{ p.studenti.length }}</span>
+            <button class="btn btn-sm btn-secondary" (click)="preuzmiExcel(p.idPredmet, p.sifraPredmeta)">
+              Preuzmi Excel
+            </button>
+        </div>
+
+          <table *ngIf="p.studenti.length > 0" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Broj indeksa</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let s of p.studenti">
+                <td>{{ s.ime }}</td>
+                <td>{{ s.prezime }}</td>
+                <td>{{ s.godinaUpisa }}/{{formatIndeksa(s.brIndeksa)}}</td>
+                <td>{{ s.email }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
