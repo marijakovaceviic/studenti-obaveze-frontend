@@ -33,9 +33,13 @@
       </div>
     </div>
 
-    <button type="submit" class="dugmePotvrda">Dodaj predmet</button>
+    <button type="submit" class="moj-btn">Dodaj predmet</button>
   </form>
-  <div>
+  <div *ngIf="greska" class="text-danger mb-2">
     {{greska}}
+  </div>
+  
+  <div *ngIf="uspeh" class="text-success mb-2">
+    {{uspeh}}
   </div>
 </div>

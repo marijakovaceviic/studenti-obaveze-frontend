@@ -36,8 +36,16 @@
         <a class="nav-link fs-5" routerLink="/nastavnik/login">Prijava</a>
       </li>
 
+      <li class="nav-item" *ngIf="adminStrana()">
+        <a class="nav-link fs-5" routerLink="/admin/login">Prijava</a>
+      </li>
+
       <li class="nav-item" *ngIf="nastavnikStrana()">
         <a class="nav-link fs-5" routerLink="/nastavnik/promenaLozinke">Promena lozinke</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link fs-5" routerLink="/odjava">Odjava</a>
       </li>
     </ul>
   </div>

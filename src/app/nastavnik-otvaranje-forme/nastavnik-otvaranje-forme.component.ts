@@ -41,6 +41,9 @@ export class NastavnikOtvaranjeFormeComponent {
   }
 
   sacuvajObavezu(){
+    this.greska = "";
+    this.uspeh = "";
+    
     if (this.tip == ""){
       this.greska = "Nije izabran tip obaveze!";
     }

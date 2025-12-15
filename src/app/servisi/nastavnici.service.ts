@@ -53,4 +53,15 @@ export class NastavniciService {
     return this.http.delete<number>(`${this.url}/brisanjeNastavnikaSaPredmeta/${idNastavnik}/${idPredmet}`);
   }
 
+  postaviZaduzenog(idNastavnik: number){
+    return this.http.post<number>(`${this.url}/postaviZaduzenog/${idNastavnik}`, null);
+  }
+
+  ukloniZaduzenog(idNastavnik: number) {
+    return this.http.post<number>(`${this.url}/ukloniZaduzenog/${idNastavnik}`, null);
+  }
+
+  zaduzenZaDemonstratore(){
+    return this.http.get<Nastavnik>(`${this.url}/zaduzenZaDemonstratore`);
+  }
 }

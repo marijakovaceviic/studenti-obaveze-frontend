@@ -22,19 +22,25 @@ export class PrijavaComponent {
     let student = localStorage.getItem("ulogovan");
     if (student != null) {
       this.ulogovan = JSON.parse(student);
-
-      this.predmetiS.dohvatanjeGodinaKojeStudentPrati(this.ulogovan.id).subscribe(
-        god=>{
-          if (god.length > 0){
-            this.godine = god;
-            this.selektujGodinu(this.godine[0]);
-          } 
-          else{
-            this.godine = [1, 2, 3, 4];
-            this.selektujGodinu(this.godine[0]);
+      if (this.ulogovan.tip == "student"){
+        this.predmetiS.dohvatanjeGodinaKojeStudentPrati(this.ulogovan.id).subscribe(
+          god=>{
+            if (god.length > 0){
+              this.godine = god;
+              this.selektujGodinu(this.godine[0]);
+            } 
+            else{
+              this.godine = [1, 2, 3, 4];
+              this.selektujGodinu(this.godine[0]);
+            }
           }
-        }
-      )
+        )
+      }
+      else {
+        this.godine = [1, 2, 3, 4];
+        this.selektujGodinu(this.godine[0]);
+      }
+      
     }
     else{
       this.godine = [1, 2, 3, 4];

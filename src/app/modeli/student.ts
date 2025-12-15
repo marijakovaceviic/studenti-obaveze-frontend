@@ -8,4 +8,6 @@ export class Student{
     godinaPracenja: number = 0;
     brIndeksa: number = 0;
     smer: string = "";
+
+    tip: string = "";
 }

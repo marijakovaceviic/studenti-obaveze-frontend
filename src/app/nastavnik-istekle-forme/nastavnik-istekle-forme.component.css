@@ -1,1 +1,10 @@
 
+.obaveza-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #2e4d6c;          
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+}

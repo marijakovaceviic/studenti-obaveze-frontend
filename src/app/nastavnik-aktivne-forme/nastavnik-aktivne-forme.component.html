@@ -10,12 +10,8 @@
             data-bs-parent="#predmetiAccordion" (shown.bs.collapse)="ucitajObaveze(p.id)">
             <div class="accordion-body">
                 <div *ngFor="let o of obavezeMapa[p.id]">
-                    <a [routerLink]="['/obaveze', o.id]">
-                        <span *ngIf="o.tip === 'lab'">Prijava za laboratorijsku vežbu</span>
-                        <span *ngIf="o.tip === 'domaci'">Predaja domaćeg zadatka</span>
-                        <span *ngIf="o.tip === 'kolokvijum'">Prijava za kolokvijum</span>
-                        <span *ngIf="o.tip === 'ispit'">Prijava za ispit</span>
-                        <span *ngIf="o.tip === 'odbrana'">Prijava za odbranu domaćeg/projektnog zadatka</span>
+                    <a [routerLink]="['../obaveze', o.id]" class="obaveza-link">
+                        {{o.naziv}}
                     </a>
                 </div>
             </div>

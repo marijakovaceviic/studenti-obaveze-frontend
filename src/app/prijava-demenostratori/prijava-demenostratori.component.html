@@ -1,4 +1,4 @@
- <div class="info-box" *ngIf="forma">
+<div class="info-box" *ngIf="forma">
     <div class="ms-5">
         <h5>Konkurs za demonstratore</h5>
 
@@ -64,13 +64,39 @@
         </div>
 
     </div>
+    <div class="mt-3">
+        <div class="prikaz-izbor" (click)="dohvatiIzabranePredmete()">
+            {{ prikaziIzabrane ? 'Sakrij prijavljene predmete' : 'Prikaz prijavljenih predmeta' }}
+        </div>
+    </div>
 
+    <div *ngIf="prikaziIzabrane" class="mt-3">
+        <ul class="list-group">
+            <li *ngFor="let p of zapamceniIzborPredmeta" class="list-group-item">
+
+                <div class="fw-semibold">
+                    {{ p.naziv }} ({{ p.sifra }})
+                </div>
+
+                <small class="text-muted small">
+                    {{ p.godina }}. godina - {{ p.odsek.toUpperCase() }}
+                </small>
+
+            </li>
+
+            <li *ngIf="zapamceniIzborPredmeta.length === 0" class="list-group-item text-muted">
+                Nema prijavljenih predmeta.
+            </li>
+        </ul>
+    </div>
+
+    <br>
     <button type="submit" class="moj-btn">Pošalji prijavu</button>
     <div *ngIf="greska" class="text-danger mb-2">
-      {{greska}}
+        {{greska}}
     </div>
 
     <div *ngIf="uspeh" class="text-success mb-2">
-      {{uspeh}}
+        {{uspeh}}
     </div>
 </form>

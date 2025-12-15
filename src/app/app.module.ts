@@ -37,6 +37,9 @@ import { PrijavaDemenostratoriComponent } from './prijava-demenostratori/prijava
 import { DemonstratoriFormaComponent } from './demonstratori-forma/demonstratori-forma.component';
 import { DemonstratoriPrijavljeniComponent } from './demonstratori-prijavljeni/demonstratori-prijavljeni.component';
 import { NastavnikPromenaLozinkeComponent } from './nastavnik-promena-lozinke/nastavnik-promena-lozinke.component';
+import { NeautorizovanComponent } from './neautorizovan/neautorizovan.component';
+import { OdjavaComponent } from './odjava/odjava.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,10 @@ import { NastavnikPromenaLozinkeComponent } from './nastavnik-promena-lozinke/na
     PrijavaDemenostratoriComponent,
     DemonstratoriFormaComponent,
     DemonstratoriPrijavljeniComponent,
-    NastavnikPromenaLozinkeComponent
+    NastavnikPromenaLozinkeComponent,
+    NeautorizovanComponent,
+    OdjavaComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,

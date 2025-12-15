@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { DemonstratoriForma } from '../modeli/demonstratoriForma';
 import { Student } from '../modeli/student';
 import { PredmetPrijavljeni } from '../modeli/predmetPrijavljeni';
+import { Predmet } from '../modeli/predmet';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,9 @@ export class DemonstratoriService {
 
   zaduzenZaDemonstratore(idNastavnik: number){
     return this.http.get<boolean>(`${this.url}/zaduzenNastavnik/${idNastavnik}`);
+  }
+
+  prijavljeniPredmetiZaStudenta(idStudent: number, idForma: number){
+    return this.http.get<Predmet[]>(`${this.url}/prijavljeniPredmeti/${idStudent}/${idForma}`);
   }
 }

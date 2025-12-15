@@ -12,7 +12,7 @@ export class PredajeService {
   url = 'http://localhost:8080/predaje';
 
   predajDomaci(formData: FormData) {
-    return this.http.post(`${this.url}/nova`, formData);
+    return this.http.post<number>(`${this.url}/nova`, formData);
   }
 
   predatiDomaci(studentId: number){

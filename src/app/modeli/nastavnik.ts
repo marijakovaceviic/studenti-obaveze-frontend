@@ -4,4 +4,6 @@ export class Nastavnik {
     prezime: string = "";
     email: string = "";
     lozinka: string = "";
+
+    tip: string = "";
 }

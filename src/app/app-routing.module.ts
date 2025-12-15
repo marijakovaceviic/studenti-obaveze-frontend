@@ -30,42 +30,49 @@ import { DemonstratoriFormaComponent } from './demonstratori-forma/demonstratori
 import { PrijavaDemenostratoriComponent } from './prijava-demenostratori/prijava-demenostratori.component';
 import { DemonstratoriPrijavljeniComponent } from './demonstratori-prijavljeni/demonstratori-prijavljeni.component';
 import { NastavnikPromenaLozinkeComponent } from './nastavnik-promena-lozinke/nastavnik-promena-lozinke.component';
+import { roleGuard } from './guardovi/role.guard';
+import { NeautorizovanComponent } from './neautorizovan/neautorizovan.component';
+import { OdjavaComponent } from './odjava/odjava.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 const routes: Routes = [
   { path: "", component: PocetnaComponent},
   { path: "login", component: LoginComponent },
   { path: "registracija", component: RegistracijaComponent },
-  { path: "predaja", component: PredajaComponent},
+  { path: "predaja", component: PredajaComponent, canActivate: [roleGuard], data: { roles: ['student'] }},
   { path: "prijava", component: PrijavaComponent},
   { path: "pregledPrijava", component: PregledPrijavaComponent},
-  { path: "podesavanja", component: PodesavanjaComponent},
-  { path: "predmeti", component: PredmetiComponent},
+  { path: "podesavanja", component: PodesavanjaComponent, canActivate: [roleGuard], data: { roles: ['student'] }},
   { path: "admin", component: AdminComponent, children: [
       { path: 'predmeti', component: PredmetiComponent },
       { path: 'nastavnici', component: AdminNastavniciComponent },
       { path: 'upravljanje', component: AdminUpravljanjeComponent },
-      { path: '', redirectTo: 'predmeti', pathMatch: 'full' }
-    ]},
-  { path: "nastavnik", component: NastavnikComponent, children: [
-      { path: 'otvaranjeForme', component: NastavnikOtvaranjeFormeComponent },
-      { path: 'aktivneForme', component: NastavnikAktivneFormeComponent },
-      { path: 'istekleForme', component: NastavnikIstekleFormeComponent },
-      { path: 'statistika', component: NastavniciStatistikaComponent },
-      { path: 'statistika/:idPredmet', component: PredmetStatistikaComponent },
-      { path: 'rezervacija', component: RezervacijaLaboratorijaComponent },
-      { path: "demonstratoriForme", component: DemonstratoriFormaComponent},
-      { path: "demonstratoriPrijave", component: DemonstratoriPrijavljeniComponent},
-      { path: "login", component: NastavnikLoginComponent},
-      { path: "promenaLozinke", component: NastavnikPromenaLozinkeComponent},
+      { path: 'login', component: AdminLoginComponent},
       { path: '', redirectTo: 'login', pathMatch: 'full' }
     ]},
-  { path: 'obaveze/:idObaveze', component: NastavnikObavezeComponent },
+  { path: "nastavnik", component: NastavnikComponent, children: [
+      { path: 'otvaranjeForme', component: NastavnikOtvaranjeFormeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
+      { path: 'aktivneForme', component: NastavnikAktivneFormeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] } },
+      { path: 'istekleForme', component: NastavnikIstekleFormeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] } },
+      { path: 'statistika', component: NastavniciStatistikaComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] } },
+      { path: 'statistika/:idPredmet', component: PredmetStatistikaComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] } },
+      { path: 'rezervacija', component: RezervacijaLaboratorijaComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] } },
+      { path: "demonstratoriForme", component: DemonstratoriFormaComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
+      { path: "demonstratoriPrijave", component: DemonstratoriPrijavljeniComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
+      { path: "login", component: NastavnikLoginComponent},
+      { path: 'obaveze/:idObaveze', component: NastavnikObavezeComponent },
+      { path: "pregledLaboratorija", component: PregledLaboratorijaComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
+      { path: "promenaLozinke", component: NastavnikPromenaLozinkeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
+      { path: '', redirectTo: 'login', pathMatch: 'full' }
+    ]},
+  
   { path: 'predmetObaveze/:idPredmet', component: PredmetObavezeComponent },
   { path: 'obavezeStudent/:idObaveze', component: StudentObavezaComponent },
-  { path: "prijavljeniLabovi", component: PrijavljeniLaboviComponent},
-  { path: "prijavljeniIspiti", component: PrijavljeniIspitiComponent},
-  { path: "pregledLaboratorija", component: PregledLaboratorijaComponent},
+  { path: "prijavljeniLabovi", component: PrijavljeniLaboviComponent, canActivate: [roleGuard], data: { roles: ['student'] }},
+  { path: "prijavljeniIspiti", component: PrijavljeniIspitiComponent, canActivate: [roleGuard], data: { roles: ['student'] }},
   { path: "prijavaZaDemonstratore", component: PrijavaDemenostratoriComponent},
+  { path: "neautorizovan", component: NeautorizovanComponent},
+  { path: "odjava", component: OdjavaComponent}
 ];
 
 @NgModule({

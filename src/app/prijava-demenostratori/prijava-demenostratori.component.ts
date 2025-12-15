@@ -30,6 +30,9 @@ export class PrijavaDemenostratoriComponent {
   greska: string = "";
   uspeh: string = "";
 
+  prikaziIzabrane: boolean = false;
+  zapamceniIzborPredmeta: Predmet[] = [];
+
   ngOnInit(): void {
     let student = localStorage.getItem("ulogovan");
     if (student != null) {
@@ -79,6 +82,16 @@ export class PrijavaDemenostratoriComponent {
   }
 
   prijava(){
+    this.greska = "";
+    this.uspeh = "";
+    if (!localStorage.getItem('ulogovan')){
+      this.greska = "Prvo se morate prijaviti u sistem!";
+      return;
+    }
+    if (this.ulogovan.tip != "student"){
+      this.greska = "Nemate dozvolu za prijavu obaveze!";
+      return;
+    }
     if (this.izabraniPredmeti.length == 0 ) {
       this.greska = "Morate izabrati predmete za koje se prijavljujete!";
     }
@@ -111,5 +124,22 @@ export class PrijavaDemenostratoriComponent {
         window.URL.revokeObjectURL(url);
       }
     )
+  }
+
+  dohvatiIzabranePredmete(){
+    this.greska = "";
+    if (!localStorage.getItem('ulogovan')){
+      this.greska = "Prvo se morate prijaviti u sistem!";
+      return;
+    }
+    this.prikaziIzabrane = !this.prikaziIzabrane; 
+
+    if (this.prikaziIzabrane && this.ulogovan.tip == "student"){
+      this.demonstratoriS.prijavljeniPredmetiZaStudenta(this.ulogovan.id, this.forma.id).subscribe(
+        predmeti =>{
+          this.zapamceniIzborPredmeta = predmeti;
+        }
+      )
+    }
   }
 }

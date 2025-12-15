@@ -5,8 +5,11 @@
     {{obaveza.opis}}
   </div>
 
-  <div class="obaveza-rok">
+  <div class="obaveza-rok" *ngIf="obaveza.tip !== 'domaci'">
     Rok za prijavu: {{obaveza.kraj | date:'dd.MM.yyyy HH:mm'}}
+  </div>
+  <div class="obaveza-rok" *ngIf="obaveza.tip === 'domaci'">
+    Rok za predaju: {{obaveza.kraj | date:'dd.MM.yyyy HH:mm'}}
   </div>
 
   <div class="prijava-status" *ngIf="obaveza.tip !== 'domaci'">
@@ -16,19 +19,25 @@
     <div class="status-poruka">
       {{ prijavljen ? 'Prijavljeni ste' : 'Još se niste prijavili' }}
     </div>
+    <div *ngIf="greskaPrijava" class="greska">
+      {{greskaPrijava}}
+    </div>
   </div>
 
   <div *ngIf="obaveza.tip === 'domaci'">
     <div class="mb-3">
       <label class="form-label">Izaberite fajl:</label>
       <input type="file" class="form-control" (change)="onFileSelected($event)" accept=".zip"/>
+      <small class="text-muted">
+        Rad mora biti zip fajl, maksimalne veličine 5 MB.
+      </small>
     </div>
 
     <div *ngIf="izabraniFajl" class="alert alert-secondary py-2">
       Izabrani fajl: <strong>{{ izabraniFajl.name }}</strong>
     </div>
 
-    <button class="btn btn-primary" (click)="predajDomaci()">
+    <button class="moj-btn" (click)="predajDomaci()">
       Predaj domaći
     </button>
 

@@ -14,6 +14,7 @@ export class AdminNastavniciComponent {
   prezime: string = "";
   email: string = "";
   greska: string = "";
+  uspeh: string = "";
 
   dodajNalog(){
     this.nastavniciS.registracija(this.ime, this.prezime, this.email).subscribe(
@@ -22,7 +23,7 @@ export class AdminNastavniciComponent {
           this.greska = "Nastavnik već ima nalog";
         }
         else{
-          //osveziti + poruka
+          this.uspeh = "Uspešno kreiran nalog!";
         }
       }
     )

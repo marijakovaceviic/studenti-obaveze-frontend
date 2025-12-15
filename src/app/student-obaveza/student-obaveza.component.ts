@@ -24,6 +24,7 @@ export class StudentObavezaComponent {
 
    izabraniFajl: File | null = null;
    greska: string = "";
+   greskaPrijava: string = "";
    uspeh: string = "";
 
    ngOnInit():void {
@@ -41,17 +42,27 @@ export class StudentObavezaComponent {
         }
       }
     )
-
-    this.prijaveS.proveriPrijavu(this.ulogovan.id, this.idObaveze).subscribe(
-      status=>{
-        if (status == 1){
-          this.prijavljen = true;
+    if (localStorage.getItem('ulogovan') && this.ulogovan.tip == "student"){
+      this.prijaveS.proveriPrijavu(this.ulogovan.id, this.idObaveze).subscribe(
+        status=>{
+          if (status == 1){
+            this.prijavljen = true;
+          }
         }
-      }
-    )
+      )
+    }
+    
    }
 
    togglePrijava(){
+    if (!localStorage.getItem('ulogovan')){
+      this.greskaPrijava = "Prvo se morate prijaviti u sistem!";
+      return;
+    }
+    if (this.ulogovan.tip != "student"){
+      this.greskaPrijava = "Nemate dozvolu za prijavu obaveze!";
+      return;
+    }
     if (!this.prijavljen){
       this.prijaveS.novaPrijava(this.ulogovan.id, this.idObaveze).subscribe(
         info =>{
@@ -76,13 +87,41 @@ export class StudentObavezaComponent {
    }
 
    onFileSelected(event: any) {
-    this.izabraniFajl = event.target.files[0];
+    this.greska = "";
+    this.uspeh = "";
+
+    const fajl: File = event.target.files[0];
+    if (!fajl) return;
+
+    const maksVel = 5 * 1024 * 1024; 
+
+    if (fajl.size > maksVel) {
+      this.greska = "zip fajl ne sme biti veći od 5 MB!";
+      this.izabraniFajl = null;
+      event.target.value = ''; 
+      return;
+    }
+     if (!fajl.name.toLowerCase().endsWith('.zip')) {
+       this.greska = "Dozvoljeni su samo zip fajlovi!";
+       this.izabraniFajl = null;
+       event.target.value = '';
+       return;
+     }
+
+    this.izabraniFajl = fajl;
   }
 
   predajDomaci() {
     this.greska = "";
     this.uspeh = "";
-
+    if (!this.ulogovan){
+      this.greska = "Morate se prijaviti da biste se predali rad!";
+      return;
+    }
+    if (this.ulogovan.tip != "student"){
+      this.greska = "Nemate dozvolu za predaju radova!";
+      return;
+    }
     if (!this.izabraniFajl) {
       this.greska = "Morate izabrati fajl.";
       return;
@@ -95,14 +134,17 @@ export class StudentObavezaComponent {
     formData.append("student", this.ulogovan.email.substring(0, 8));
 
     this.predajeS.predajDomaci(formData).subscribe(
-      //odgovor kako hvatam
-      //onda :
-      /*
-      this.emailS.slanjeMejlaOUspesnostiPredaje(this.ulogovan.id, this.idObaveze).subscribe(
+      status=>{
+        if (status != 0){
+          this.greska = "Došlo je do greške prilikom predaje rada!";
+        }
+        else{
+          this.uspeh = "Uspešno ste predali rad!";
+          this.emailS.slanjeMejlaOUspesnostiPredaje(this.ulogovan.id, this.idObaveze).subscribe(
         
-      )
-      */
-     //this.uspeh = "Domaći je uspešno predat!";
+          )
+        }
+      }
     )
   
   }

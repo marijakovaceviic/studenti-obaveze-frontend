@@ -1,0 +1,40 @@
+.kartica-wrapper {
+  min-height: 80vh;           
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;    
+  padding-top: 80px;          
+}
+
+.kartica-container {
+  max-width: 420px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.access-title {
+  color: #1a3d7c;  
+}
+
+.login-btn {
+  padding: 10px 0;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+}
+
+.boja-btn {
+  background-color: #295b78;
+  color: #fff;
+}
+
+.boja-btn:hover {
+  background-color: #00264d;
+}
