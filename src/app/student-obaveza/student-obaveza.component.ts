@@ -26,6 +26,8 @@ export class StudentObavezaComponent {
    greska: string = "";
    greskaPrijava: string = "";
    uspeh: string = "";
+   dozvoljenPrikaz: boolean = false;
+   nedozvoljenaPrijava: string = "";
 
    ngOnInit():void {
     this.idObaveze = Number(this.route.snapshot.paramMap.get('idObaveze'));
@@ -38,7 +40,17 @@ export class StudentObavezaComponent {
     this.obavezeS.dohvatanjeObavezePoIdu(this.idObaveze).subscribe(
       data=>{
         if (data != null){
+          const sada = new Date();
+          const kraj = new Date(data.kraj);
+
+          if (sada > kraj) {
+            this.nedozvoljenaPrijava = "Rok za ovu obavezu je istekao!"; 
+            this.dozvoljenPrikaz = false;
+            return;
+          }
+
           this.obaveza = data;
+          this.dozvoljenPrikaz = true;
         }
       }
     )
@@ -80,6 +92,9 @@ export class StudentObavezaComponent {
         status=>{
           if (status > 0){
             this.prijavljen = false;
+            this.emailS.odjavaSaObaveze(this.ulogovan.id, this.idObaveze).subscribe(
+              
+            )
           }
         }
       )

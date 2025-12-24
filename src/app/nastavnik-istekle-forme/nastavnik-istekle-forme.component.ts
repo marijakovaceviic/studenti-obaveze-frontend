@@ -17,15 +17,24 @@ export class NastavnikIstekleFormeComponent {
   predmeti: Predmet[] = [];
   ulogovan: Nastavnik = new Nastavnik();
   obavezeMapa: { [predmetId: number]: Obaveza[] } = {};
+  brojObavezaMapa: { [predmetId: number]: number } = {};
   
-  ngOnInit():void{
+  ngOnInit(): void {
     let nastavnik = localStorage.getItem("ulogovan");
     if (nastavnik != null) {
       this.ulogovan = JSON.parse(nastavnik);
 
       this.predmetiS.dohvatanjePredmetaZaNastavnika(this.ulogovan.id).subscribe(
-        predmeti=>{
+        predmeti => {
           this.predmeti = predmeti;
+
+          predmeti.forEach(p => {
+            this.obavezeS.brojIsteklihObavezaZaPredmet(p.id).subscribe(
+              broj => {
+                this.brojObavezaMapa[p.id] = broj;
+              }
+            );
+          });
         }
       )
     }

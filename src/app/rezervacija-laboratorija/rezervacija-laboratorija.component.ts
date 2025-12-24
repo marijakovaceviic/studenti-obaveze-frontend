@@ -80,6 +80,7 @@ export class RezervacijaLaboratorijaComponent {
               this.datum = "";
               this.vremeOd = "";
               this.vremeDo = "";
+              this.izabraneLaboratorije = [];
             }
           }
         )

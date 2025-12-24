@@ -1,4 +1,4 @@
-<div *ngIf="obaveza.tip !== 'domaci'">
+<div *ngIf="dozvoljenPrikaz && obaveza.tip !== 'domaci'">
     <div class="header-sekcija">
         <h4 class="naziv-obaveze">{{obaveza.naziv}}</h4> <br>
         <p class="rok">Rok: {{obaveza.kraj | date:'dd.MM.yyyy HH:mm'}}</p> <br>
@@ -42,7 +42,7 @@
 </div>
 
 
-<div *ngIf="obaveza.tip === 'domaci'" class="domaci-container">
+<div *ngIf="dozvoljenPrikaz && obaveza.tip === 'domaci'" class="domaci-container">
 
     <h4>{{ obaveza.naziv }}</h4>
 
@@ -56,4 +56,10 @@
         Nema predatih radova za ovu obavezu.
     </div>
 
+</div>
+
+<div *ngIf="!dozvoljenPrikaz" class="domaci-container">
+  <div *ngIf="greskaPrikaz" class="text-danger mt-2">
+    {{greskaPrikaz}}
+  </div>
 </div>

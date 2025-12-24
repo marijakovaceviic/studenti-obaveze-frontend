@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { PredmetPrijavljeni } from '../modeli/predmetPrijavljeni';
 import { DemonstratoriService } from '../servisi/demonstratori.service';
+import { catchError, EMPTY } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-demonstratori-prijavljeni',
@@ -25,13 +27,22 @@ export class DemonstratoriPrijavljeniComponent {
   }
 
   preuzmiExcel(idPredmet: number, sifra: string) {
-    this.demonstratoriS.preuzimanjeSpiskaZaPredmet(idPredmet).subscribe(
+    this.demonstratoriS.preuzimanjeSpiskaZaPredmet(idPredmet).pipe(
+      catchError((err: HttpErrorResponse) => {
+        if (err.status === 404) {
+          alert('Spisak studenata za ovaj predmet nije pronađen!');
+        } else {
+          alert('Došlo je do greške prilikom preuzimanja spiska studenata!');
+        }
+        return EMPTY;
+      })
+    ).subscribe(
       (blob) => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'prijavljeni' + '_' + sifra +'.xlsx';
-      a.click();
-    });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'prijavljeni' + '_' + sifra + '.xlsx';
+        a.click();
+      });
   }
 }

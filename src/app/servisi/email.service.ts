@@ -14,6 +14,10 @@ export class EmailService {
     return this.http.get<number>(`${this.url}/uspesnaPrijava/${idStudent}/${idObaveza}`);
   }
 
+  odjavaSaObaveze(idStudent: number, idObaveza: number){
+    return this.http.get<number>(`${this.url}/odjava/${idStudent}/${idObaveza}`);
+  }
+
   slanjeMejlaOUspesnostiPredaje(idStudent: number, idObaveza: number){
     return this.http.get<number>(`${this.url}/uspesnaPredaja/${idStudent}/${idObaveza}`);
   }

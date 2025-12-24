@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../servisi/admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-login',
@@ -7,16 +8,14 @@ import { AdminService } from '../servisi/admin.service';
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent {
-  constructor(private adminS: AdminService) { }
+  constructor(private adminS: AdminService, private router: Router) { }
   
   email: string = "";
   lozinka: string = "";
   greska: string = "";
-  uspeh: string = "";
   
   login() {
     this.greska = "";
-    this.uspeh = "";
     if (this.email == "") {
       this.greska = "Nije unet email!";
     }
@@ -31,7 +30,7 @@ export class AdminLoginComponent {
           }
           else {
             localStorage.setItem('ulogovan', JSON.stringify(data));
-            this.uspeh = "Uspešno ste se prijavili!";
+            this.router.navigate(['admin/predmeti']);
           }
         }
       ) 

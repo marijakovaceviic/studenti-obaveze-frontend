@@ -103,7 +103,7 @@ export class PregledRezervacijaLabComponent {
             start: start,
             end: end,
             extendedProps: {
-              tooltip: `${r.nazivObaveze} (${r.imeNastavnika} ${r.prezimeNastavnika})`
+              tooltip: `${r.nazivObaveze}; ${r.akronim} (${r.imeNastavnika} ${r.prezimeNastavnika})`
             }
           };
         });

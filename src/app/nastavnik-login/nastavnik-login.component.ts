@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NastavniciService } from '../servisi/nastavnici.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nastavnik-login',
@@ -8,16 +9,14 @@ import { NastavniciService } from '../servisi/nastavnici.service';
 })
 export class NastavnikLoginComponent {
 
-  constructor(private nastvniciS: NastavniciService) { }
+  constructor(private nastvniciS: NastavniciService, private router: Router) { }
 
   email: string = "";
   lozinka: string = "";
   greska: string = "";
-  uspeh: string = "";
 
   login() {
     this.greska = "";
-    this.uspeh = "";
     if (this.email == "") {
       this.greska = "Nije unet email!";
     }
@@ -32,7 +31,7 @@ export class NastavnikLoginComponent {
           }
           else {
             localStorage.setItem('ulogovan', JSON.stringify(data));
-            this.uspeh = "Uspešno ste se prijavili!";
+            this.router.navigate(['nastavnik/otvaranjeForme']);
           }
         }
       ) 

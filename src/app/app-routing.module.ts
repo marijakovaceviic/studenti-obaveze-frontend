@@ -60,7 +60,7 @@ const routes: Routes = [
       { path: "demonstratoriForme", component: DemonstratoriFormaComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
       { path: "demonstratoriPrijave", component: DemonstratoriPrijavljeniComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
       { path: "login", component: NastavnikLoginComponent},
-      { path: 'obaveze/:idObaveze', component: NastavnikObavezeComponent },
+      { path: 'obaveze/:idObaveze', component: NastavnikObavezeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] } },
       { path: "pregledLaboratorija", component: PregledLaboratorijaComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
       { path: "promenaLozinke", component: NastavnikPromenaLozinkeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
       { path: '', redirectTo: 'login', pathMatch: 'full' }

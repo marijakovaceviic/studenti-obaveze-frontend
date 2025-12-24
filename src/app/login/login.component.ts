@@ -14,9 +14,9 @@ export class LoginComponent {
   korIme: string = "";
   lozinka: string = "";
   greska: string = "";
-  uspeh: string = "";
 
   login(){
+    this.greska = "";
     let email = this.korIme + "@student.etf.bg.ac.rs";
 
     if (this.korIme == ""){
@@ -33,7 +33,7 @@ export class LoginComponent {
           }
           else{
             localStorage.setItem('ulogovan', JSON.stringify(data));
-            this.uspeh = "Uspešno ste se prijavili!";
+            this.router.navigate(['']);
           }
         }
       )

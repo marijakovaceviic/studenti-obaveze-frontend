@@ -1,4 +1,4 @@
-<div class="obaveza-container">
+<div class="obaveza-container" *ngIf="dozvoljenPrikaz">
   <h2 class="obaveza-naslov">{{obaveza.naziv}}</h2>
 
   <div class="obaveza-opis" *ngIf="obaveza.opis">
@@ -49,5 +49,11 @@
       {{uspeh}}
     </div>
 
+  </div>
+</div>
+
+<div *ngIf="!dozvoljenPrikaz" class="obaveza-container">
+  <div *ngIf="nedozvoljenaPrijava" class="text-danger mt-2">
+    {{nedozvoljenaPrijava}}
   </div>
 </div>

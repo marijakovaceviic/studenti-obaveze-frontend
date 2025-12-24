@@ -33,7 +33,7 @@ export class PredmetStatistikaComponent {
   barChartType = 'bar';
   barChartLegend = true;
 
-  public barChartData1: ChartConfiguration<'bar'>['data'] = {
+  public barChartData1: ChartConfiguration<'bar'| 'line'>['data'] = {
     labels: [],
     datasets: [
       { data: [], label: 'Broj prijavljenih', backgroundColor: '#748fb8ff', hoverBackgroundColor: '#455c80ff', borderColor: '#748fb8ff' }

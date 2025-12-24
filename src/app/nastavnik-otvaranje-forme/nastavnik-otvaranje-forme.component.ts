@@ -74,6 +74,15 @@ export class NastavnikOtvaranjeFormeComponent {
               this.emailS.otvorenaObaveza(id).subscribe(
 
               )
+              this.pocetak = "";
+              this.kraj = "";
+              this.tip = "";
+              this.naziv = "";
+              this.opis = "";
+              this.predmet = 0;
+            }
+            else{
+              this.greska = "Došlo je do greške prilikom rezervacije!";
             }
           }
         )

@@ -49,4 +49,12 @@ export class ObavezeService {
   dohvatanjeIsteklihObavezaZaPredmet(idPredmet: number){
     return this.http.get<Obaveza[]>(`${this.url}/istekle/zaPredmet/${idPredmet}`);
   }
+
+  brojAktivnihObavezaZaPredmet(idPredmet: number){
+    return this.http.get<number>(`${this.url}/brojAktivnih/zaPredmet/${idPredmet}`);
+  }
+
+   brojIsteklihObavezaZaPredmet(idPredmet: number){
+    return this.http.get<number>(`${this.url}/brojIsteklih/zaPredmet/${idPredmet}`);
+  }
 }
