@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Student } from '../modeli/student';
 import { StudentService } from '../servisi/student.service';
-import * as CryptoJS from 'crypto-js';
 import { Predmet } from '../modeli/predmet';
 import { PredmetiService } from '../servisi/predmeti.service';
 
@@ -23,10 +22,11 @@ export class PodesavanjaComponent {
   greskaLozinka: string = "";
   greskaPredmeti: string = "";
   uspeh: string = "";
+  uspehPredmeti: string = "";
 
   izabraneGodine:number[] = [];
   odsek:string = "";
-  godineZaPrikaz: number[] = [1, 2, 3, 4];
+  godineZaPrikaz: number[] = [1, 2, 3, 4, 5];
 
   sviPredmeti: Predmet[] = [];
   izabraniPredmeti: number[] = [];
@@ -102,7 +102,7 @@ export class PodesavanjaComponent {
   osveziPrikaz() {
     this.greskaPredmeti = "";
 
-    this.godineZaPrikaz = this.izabraneGodine.length === 0 ? [1,2,3,4] : this.izabraneGodine;
+    this.godineZaPrikaz = this.izabraneGodine.length === 0 ? [1,2,3,4,5] : this.izabraneGodine;
 
     this.filtriraniPredmeti = this.sviPredmeti.filter(p => 
       (this.izabraneGodine.length === 0 || this.izabraneGodine.includes(p.godina)) &&
@@ -135,6 +135,7 @@ export class PodesavanjaComponent {
           this.izabraneGodine = [];
           this.odsek = "";
           this.filtriraniPredmeti = this.sviPredmeti;
+          this.uspehPredmeti = "Uspešan izbor predmeta";
         }
       }
     )

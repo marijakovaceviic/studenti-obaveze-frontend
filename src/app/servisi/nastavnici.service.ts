@@ -10,6 +10,7 @@ export class NastavniciService {
   constructor(private http: HttpClient) { }
     
   url = 'http://localhost:8080/nastavnici';
+  urlLdap = 'http://localhost:8080/ldap';
 
   registracija(ime: string, prezime: string, email: string){
     const data = {
@@ -26,6 +27,14 @@ export class NastavniciService {
       lozinka: lozinka
     }
     return this.http.post<Nastavnik>(`${this.url}/prijava`, data);
+  }
+
+  prijavaLdap(korisnickoIme: string, lozinka: string){
+    const data = {
+      korisnickoIme : korisnickoIme,
+      lozinka: lozinka
+    }
+    return this.http.post<Nastavnik>(`${this.urlLdap}/prijavaNastavnik`, data);
   }
 
   promenaLozinke(email: string, lozinka: string, novaLozinka: string){

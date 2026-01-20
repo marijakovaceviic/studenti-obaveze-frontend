@@ -108,10 +108,10 @@ export class StudentObavezaComponent {
     const fajl: File = event.target.files[0];
     if (!fajl) return;
 
-    const maksVel = 5 * 1024 * 1024; 
+    const maksVel = 25 * 1024 * 1024; 
 
     if (fajl.size > maksVel) {
-      this.greska = "zip fajl ne sme biti veći od 5 MB!";
+      this.greska = "Zip fajl ne sme biti veći od 25 MB!";
       this.izabraniFajl = null;
       event.target.value = ''; 
       return;
@@ -130,7 +130,7 @@ export class StudentObavezaComponent {
     this.greska = "";
     this.uspeh = "";
     if (!this.ulogovan){
-      this.greska = "Morate se prijaviti da biste se predali rad!";
+      this.greska = "Morate se prijaviti da biste predali rad!";
       return;
     }
     if (this.ulogovan.tip != "student"){
@@ -148,7 +148,7 @@ export class StudentObavezaComponent {
     formData.append("idStudent", this.ulogovan.id.toString());
     formData.append("student", this.ulogovan.email.substring(0, 8));
 
-    this.predajeS.predajDomaci(formData).subscribe(
+    this.predajeS.predajaDomaceg(formData).subscribe(
       status=>{
         if (status != 0){
           this.greska = "Došlo je do greške prilikom predaje rada!";
@@ -157,7 +157,7 @@ export class StudentObavezaComponent {
           this.uspeh = "Uspešno ste predali rad!";
           this.emailS.slanjeMejlaOUspesnostiPredaje(this.ulogovan.id, this.idObaveze).subscribe(
         
-          )
+          ) 
         }
       }
     )

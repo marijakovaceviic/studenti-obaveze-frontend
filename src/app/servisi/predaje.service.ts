@@ -11,7 +11,7 @@ export class PredajeService {
       
   url = 'http://localhost:8080/predaje';
 
-  predajDomaci(formData: FormData) {
+  predajaDomaceg(formData: FormData) {
     return this.http.post<number>(`${this.url}/nova`, formData);
   }
 

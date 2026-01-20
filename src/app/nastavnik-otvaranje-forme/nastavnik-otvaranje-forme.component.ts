@@ -71,6 +71,7 @@ export class NastavnikOtvaranjeFormeComponent {
           id=>{
             if (id != null){
               this.uspeh = "Obaveza je uspešno dodata!";
+              
               this.emailS.otvorenaObaveza(id).subscribe(
 
               )
@@ -82,7 +83,7 @@ export class NastavnikOtvaranjeFormeComponent {
               this.predmet = 0;
             }
             else{
-              this.greska = "Došlo je do greške prilikom rezervacije!";
+              this.greska = "Došlo je do greške prilikom dodavanja!";
             }
           }
         )

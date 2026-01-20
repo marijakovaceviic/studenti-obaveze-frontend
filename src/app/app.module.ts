@@ -40,6 +40,9 @@ import { NastavnikPromenaLozinkeComponent } from './nastavnik-promena-lozinke/na
 import { NeautorizovanComponent } from './neautorizovan/neautorizovan.component';
 import { OdjavaComponent } from './odjava/odjava.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminStatistikaGodineComponent } from './admin-statistika-godine/admin-statistika-godine.component';
+import { StudentLdapLoginComponent } from './student-ldap-login/student-ldap-login.component';
+import { NastavnikLdapLoginComponent } from './nastavnik-ldap-login/nastavnik-ldap-login.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,10 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     NastavnikPromenaLozinkeComponent,
     NeautorizovanComponent,
     OdjavaComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    AdminStatistikaGodineComponent,
+    StudentLdapLoginComponent,
+    NastavnikLdapLoginComponent
   ],
   imports: [
     BrowserModule,

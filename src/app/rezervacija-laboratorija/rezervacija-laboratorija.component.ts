@@ -33,7 +33,6 @@ export class RezervacijaLaboratorijaComponent {
   }
 
   slobodneLaboratorije() {
-    console.log("jjjjjaaa")
     if (!this.datum || !this.vremeOd || !this.vremeDo) return;
 
     this.rezeravijeS.slobodneLaboratorije(this.datum, this.vremeOd, this.vremeDo).subscribe(
@@ -70,6 +69,28 @@ export class RezervacijaLaboratorijaComponent {
       this.greska = "Nije izabrano vreme početka odnosno kraja obaveze!"
     }
     else{
+      let [satiOd, minuteOd] = this.vremeOd.split(':').map(Number);
+      let [satiDo, minuteDo] = this.vremeDo.split(':').map(Number);
+
+      let datumVremeOd = new Date(this.datum);
+      datumVremeOd.setHours(satiOd, minuteOd, 0, 0);
+
+      let datumVremeDo = new Date(this.datum);
+      datumVremeDo.setHours(satiDo, minuteDo, 0, 0);
+
+      let sada = new Date();
+
+      if (datumVremeOd < sada) {
+        this.greska = "Rezervacija mora početi u budućnosti!";
+        return;
+      }
+
+      if (datumVremeDo <= datumVremeOd) {
+        this.greska = "Vreme početka rezervacije mora biti pre vremena kraja!";
+        return;
+      }
+
+
       for(let lab of this.izabraneLaboratorije){
         this.rezeravijeS.novaRezervacija(lab, this.nazivObaveze, this.ulogovan.id, this.datum, this.vremeOd, this.vremeDo, this.akronim).subscribe(
           rez=>{
@@ -81,6 +102,9 @@ export class RezervacijaLaboratorijaComponent {
               this.vremeOd = "";
               this.vremeDo = "";
               this.izabraneLaboratorije = [];
+            }
+            else{
+              this.greska = "Neuspešna rezervacja!";
             }
           }
         )

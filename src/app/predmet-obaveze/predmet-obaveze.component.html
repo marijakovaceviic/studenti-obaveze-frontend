@@ -1,5 +1,10 @@
 <div class="container mt-4">
+    <div class="mb-4 p-3 bg-light rounded shadow-sm">
+    <h5 class="mb-1 fw-semibold">
+      {{ predmet.naziv }} ({{ predmet.sifra }})
+    </h5>
 
+  </div>
     <div class="tab-content p-4 shadow-sm bg-white rounded-bottom">
         <div *ngIf="obaveze && obaveze.length > 0">
 

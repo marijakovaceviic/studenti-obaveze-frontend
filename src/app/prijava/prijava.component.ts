@@ -17,6 +17,7 @@ export class PrijavaComponent {
 
   sviPredmetiStudenta: Predmet[] = [];
   predmetiZaGodinu: Predmet[] = [];
+  izabraniPredmeti: boolean = false;
     
   ngOnInit():void {
     let student = localStorage.getItem("ulogovan");
@@ -27,41 +28,35 @@ export class PrijavaComponent {
           god=>{
             if (god.length > 0){
               this.godine = god;
+              this.izabraniPredmeti = true;
               this.selektujGodinu(this.godine[0]);
             } 
             else{
-              this.godine = [1, 2, 3, 4];
+              this.godine = [1, 2, 3, 4, 5];
               this.selektujGodinu(this.godine[0]);
             }
           }
         )
       }
       else {
-        this.godine = [1, 2, 3, 4];
+        this.godine = [1, 2, 3, 4, 5];
         this.selektujGodinu(this.godine[0]);
       }
       
     }
     else{
-      this.godine = [1, 2, 3, 4];
+      this.godine = [1, 2, 3, 4, 5];
       this.selektujGodinu(this.godine[0]);
     }
   }
 
   selektujGodinu(g: number) {
     this.aktivnaGodina = g;
-    if (this.ulogovan != null){
+    if (this.ulogovan != null && this.ulogovan.tip == "student" && this.izabraniPredmeti){
       this.predmetiS.dohvatanjePredmetaSaAktivnimObavezama(this.ulogovan.id, g).subscribe(
       predmeti=>{
         if (predmeti.length > 0){
           this.predmetiZaGodinu = predmeti;
-        }
-        else{
-          this.predmetiS.dohvatanjePredmetaSaAktivnimObavezamaZaGodinu(g).subscribe(
-            p=>{
-              this.predmetiZaGodinu = p;
-            }
-          )
         }
       }
     )

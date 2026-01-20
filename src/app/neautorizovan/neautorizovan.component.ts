@@ -7,6 +7,8 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./neautorizovan.component.css']
 })
 export class NeautorizovanComponent {
-
+  nazad() {
+    window.history.back();
+  }
  
 }

@@ -1,0 +1,16 @@
+.predmet-info {
+  font-size: 0.95rem;
+  color: #6c757d; 
+}
+
+.predmet-naziv {
+  color: #2e4e8b;
+  font-weight: 500;
+}
+.sekcija-naslov {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #2e4e8b;
+  text-align: center;
+  margin-bottom: 8px;
+}

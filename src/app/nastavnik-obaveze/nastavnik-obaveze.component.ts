@@ -40,7 +40,7 @@ export class NastavnikObavezeComponent {
     this.obavezeS.dohvatanjeObavezePoIdu(this.idObaveze).subscribe(
       data=>{
         if (data != null){
-          this.obaveza = data;
+          this.obaveza = data; 
 
           this.obavezeS.dohvatanjeObavezaZaNastavnika(this.ulogovan.id).subscribe(
             obaveze=>{

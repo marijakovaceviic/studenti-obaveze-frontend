@@ -1,6 +1,17 @@
-<div class="container-fluid">
+<div class="predmet-info mb-3">
+  Statistika za predmet:
+  <span class="predmet-naziv">
+    {{predmet.naziv}} ({{predmet.sifra}})
+  </span>
+</div>
+<br>
+  <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-8 col-lg-8">
+            <div class="sekcija-naslov">
+                Statistika prijava
+            </div>
+
             <div style="display: block;">
                 <canvas baseChart [data]="barChartData1" [labels]="labelePrijave" [options]="barChartOptions"
                     [legend]="barChartLegend" [type]="'bar'">
@@ -8,8 +19,12 @@
             </div>
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-sm-8">
+            <div class="sekcija-naslov">
+                Statistika predaja
+            </div>
             <div style="display: block;">
                 <canvas baseChart [data]="barChartData2" [labels]="labelePredaje" [options]="barChartOptions"
                     [legend]="barChartLegend" [type]="'bar'">

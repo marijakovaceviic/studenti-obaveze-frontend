@@ -22,9 +22,8 @@
   font-size: 16px;
 }
 
-/* Header */
 .moja-tabela thead {
-  background: #dfe3e4; /* blaga sivo-plava */
+  background: #dfe3e4; 
 }
 
 .moja-tabela th {
@@ -34,13 +33,11 @@
   color: #002b5c;
 }
 
-/* Redovi */
 .moja-tabela td {
   padding: 12px;
   border-bottom: 1px solid #f0f0f5;
 }
 
-/* Prugasto */
 .moja-tabela tbody tr:nth-child(even) {
   background: #dfe3e4;
 }
@@ -49,13 +46,11 @@
   background: #ffffff;
 }
 
-/* Hover efekat */
 .moja-tabela tbody tr:hover {
   background: #eaf1ff;
   transition: 0.2s;
 }
 
-/* Poruka */
 .nema-podataka {
   text-align: center;
   padding: 15px;
@@ -88,7 +83,6 @@
   border: 1px solid #e2e2ee;
 }
 
-/* Tekst o broju prijavljenih */
 .broj-prijavljenih {
   margin: 0;
   font-size: 16px;
@@ -148,3 +142,7 @@
   background-color: #00264d;
 }
 
+.predmet-naziv {
+  color: #2e4e8b;
+  font-weight: 500;
+}

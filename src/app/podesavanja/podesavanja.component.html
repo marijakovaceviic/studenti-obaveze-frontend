@@ -80,7 +80,7 @@
             <form (ngSubmit)="sacuvajIzbor()" class="ms-5">
                 <div class="mb-3">
                     <label class="form-label d-block">Godina:</label>
-                    <div class="form-check form-check-inline" *ngFor="let g of [1, 2, 3, 4]">
+                    <div class="form-check form-check-inline" *ngFor="let g of [1, 2, 3, 4,5]">
                         <input type="checkbox" class="form-check-input" [id]="'godina' + g" [value]="g"
                             (change)="izborGodinaZaPracenje(g, $event)" [checked]="izabraneGodine.includes(g)" />
                         <label class="form-check-label" [for]="'godina' + g">{{g}}.</label>
@@ -133,6 +133,9 @@
                 <button type="submit" class="moj-btn">Sačuvaj izbor</button>
                 <div *ngIf="greskaPredmeti" class="greska">
                     {{greskaPredmeti}}
+                </div>
+                <div *ngIf="uspehPredmeti" class="text-success mt-2">
+                    {{uspehPredmeti}}
                 </div>
             </form>
             <div class="mt-4 ms-5">

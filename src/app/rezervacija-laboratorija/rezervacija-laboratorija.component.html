@@ -7,25 +7,25 @@
 
 <div class="container mt-3">
     <div class="mb-3">
-        <label class="form-label">Naziv obaveze</label>
+        <label class="form-label">Naziv obaveze:</label>
         <input type="text" class="form-control" [(ngModel)]="nazivObaveze" placeholder="Unesite naziv obaveze">
     </div>
     <div class="mb-3">
-        <label class="form-label">Akronim predmeta</label>
+        <label class="form-label">Akronim predmeta:</label>
         <input type="text" class="form-control" [(ngModel)]="akronim" placeholder="Unesite akronim predmeta">
     </div>
     <div class="mb-3">
-        <label class="form-label">Datum</label>
+        <label class="form-label">Datum:</label>
         <input type="date" class="form-control" [(ngModel)]="datum" (change)="slobodneLaboratorije()">
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Vreme od</label>
+        <label class="form-label">Vreme od:</label>
         <input type="time" class="form-control" [(ngModel)]="vremeOd" (change)="slobodneLaboratorije()">
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Vreme do</label>
+        <label class="form-label">Vreme do:</label>
         <input type="time" class="form-control" [(ngModel)]="vremeDo" (change)="slobodneLaboratorije()">
     </div>
 

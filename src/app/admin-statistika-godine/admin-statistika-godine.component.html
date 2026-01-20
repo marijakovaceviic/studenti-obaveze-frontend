@@ -1,0 +1,40 @@
+<div class="d-flex gap-3 mb-3">
+  <select class="form-select" [(ngModel)]="izabranaGodina" (change)="osveziGrafik()">
+    <option *ngFor="let g of godine" [value]="g">{{ g }}</option>
+  </select>
+
+  <select class="form-select" [(ngModel)]="izabraniOdsek" (change)="osveziGrafik()">
+    <option *ngFor="let o of odseci" [value]="o">{{ o }}</option>
+  </select>
+</div>
+
+<h5 class="text-center mb-3">
+  Raspodela obaveza po tipu
+</h5>
+
+<div class="row justify-content-center">
+  <div class="col-sm-10 col-lg-8" style="min-height: 400px;">
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      [type]="'bar'"
+      [legend]="barChartLegend">
+    </canvas>
+  </div>
+</div>
+
+<br>
+<h5 class="text-center mb-3">
+  Raspodela obaveza po predmetima
+</h5>
+<div class="row justify-content-center">
+  <div class="col-sm-8 col-lg-5" style="min-height: 300px;">
+    <canvas
+      baseChart
+      [data]="pieChartData"
+      [type]="'pie'"
+      [options]="pieChartOptions">
+    </canvas>
+  </div>
+</div>

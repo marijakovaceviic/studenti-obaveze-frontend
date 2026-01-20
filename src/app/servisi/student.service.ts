@@ -10,7 +10,7 @@ export class StudentService {
   constructor(private http: HttpClient) { }
 
   url = 'http://localhost:8080/studenti';
-
+  urlLdap = 'http://localhost:8080/ldap';
 
   proveraStudenta(email: string){
     return this.http.post<number>(`${this.url}/provera`, email);
@@ -31,6 +31,14 @@ export class StudentService {
       lozinka: lozinka
     }
     return this.http.post<Student>(`${this.url}/prijava`, data);
+  }
+
+  prijavaLdap(korisnickoIme: string, lozinka: string){
+    const data = {
+      korisnickoIme : korisnickoIme,
+      lozinka: lozinka
+    }
+    return this.http.post<Student>(`${this.urlLdap}/prijavaStudent`, data);
   }
 
   promenaLozinke(email: string, staraLozinka: string, novaLozinka: string){

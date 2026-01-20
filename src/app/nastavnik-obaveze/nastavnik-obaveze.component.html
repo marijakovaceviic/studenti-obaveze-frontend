@@ -1,4 +1,10 @@
 <div *ngIf="dozvoljenPrikaz && obaveza.tip !== 'domaci'">
+    <div class="predmet-info mb-3">
+        Predmet:
+        <span class="predmet-naziv">
+            {{obaveza.nazivPredmeta}} ({{obaveza.sifraPredmeta}})
+        </span>
+    </div>
     <div class="header-sekcija">
         <h4 class="naziv-obaveze">{{obaveza.naziv}}</h4> <br>
         <p class="rok">Rok: {{obaveza.kraj | date:'dd.MM.yyyy HH:mm'}}</p> <br>
@@ -51,7 +57,7 @@
         <p class="broj-prijavljenih"> Broj radova: <strong>{{brojRadova}}</strong></p>
         <button class="dugme-preuzimanje" (click)="preuzmiSveRadove()">Preuzmi arhivu</button>
     </div>
-    
+
     <div *ngIf="brojRadova === 0" class="nema-podataka">
         Nema predatih radova za ovu obavezu.
     </div>
@@ -59,7 +65,7 @@
 </div>
 
 <div *ngIf="!dozvoljenPrikaz" class="domaci-container">
-  <div *ngIf="greskaPrikaz" class="text-danger mt-2">
-    {{greskaPrikaz}}
-  </div>
+    <div *ngIf="greskaPrikaz" class="text-danger mt-2">
+        {{greskaPrikaz}}
+    </div>
 </div>

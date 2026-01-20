@@ -4,8 +4,11 @@
   <div class="godine-mreza">
     <div class="godina-kartica" *ngFor="let g of godine" (click)="selektujGodinu(g)"
       [class.selected]="g === aktivnaGodina">
-      <div>
+      <div *ngIf="g !== 5">
         {{g}}. godina
+      </div>
+      <div *ngIf="g === 5">
+        master
       </div>
     </div>
   </div>

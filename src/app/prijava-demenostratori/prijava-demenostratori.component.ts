@@ -19,7 +19,7 @@ export class PrijavaDemenostratoriComponent {
 
   izabraneGodine:number[] = [];
   odsek:string = "";
-  godineZaPrikaz: number[] = [1, 2, 3, 4];
+  godineZaPrikaz: number[] = [1, 2, 3, 4, 5];
 
   sviPredmeti: Predmet[] = [];
   izabraniPredmeti: number[] = [];
@@ -44,13 +44,12 @@ export class PrijavaDemenostratoriComponent {
           this.filtriraniPredmeti = this.sviPredmeti; 
         }
       )
-
-      this.demonstratoriS.aktivnaForma().subscribe(
+    }
+    this.demonstratoriS.aktivnaForma().subscribe(
         aktivnaF=>{
           this.forma = aktivnaF;
         }
       )
-    }
   }
 
   izborGodina(godina:number, event: any){
@@ -65,7 +64,7 @@ export class PrijavaDemenostratoriComponent {
 
 
   osveziPrikaz() {
-    this.godineZaPrikaz = this.izabraneGodine.length === 0 ? [1,2,3,4] : this.izabraneGodine;
+    this.godineZaPrikaz = this.izabraneGodine.length === 0 ? [1,2,3,4,5] : this.izabraneGodine;
 
     this.filtriraniPredmeti = this.sviPredmeti.filter(p => 
       (this.izabraneGodine.length === 0 || this.izabraneGodine.includes(p.godina)) &&
@@ -94,6 +93,7 @@ export class PrijavaDemenostratoriComponent {
     }
     if (this.izabraniPredmeti.length == 0 ) {
       this.greska = "Morate izabrati predmete za koje se prijavljujete!";
+      return;
     }
     this.demonstratoriS.novaPrijava(this.ulogovan.id, this.forma.id, this.izabraniPredmeti).subscribe(
       status =>{

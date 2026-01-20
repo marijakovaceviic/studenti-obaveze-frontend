@@ -34,20 +34,25 @@ import { roleGuard } from './guardovi/role.guard';
 import { NeautorizovanComponent } from './neautorizovan/neautorizovan.component';
 import { OdjavaComponent } from './odjava/odjava.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminStatistikaGodineComponent } from './admin-statistika-godine/admin-statistika-godine.component';
+import { StudentLdapLoginComponent } from './student-ldap-login/student-ldap-login.component';
+import { NastavnikLdapLoginComponent } from './nastavnik-ldap-login/nastavnik-ldap-login.component';
 
 const routes: Routes = [
   { path: "", component: PocetnaComponent},
   { path: "login", component: LoginComponent },
+  { path: "loginLdap", component: StudentLdapLoginComponent },
   { path: "registracija", component: RegistracijaComponent },
   { path: "predaja", component: PredajaComponent, canActivate: [roleGuard], data: { roles: ['student'] }},
   { path: "prijava", component: PrijavaComponent},
   { path: "pregledPrijava", component: PregledPrijavaComponent},
   { path: "podesavanja", component: PodesavanjaComponent, canActivate: [roleGuard], data: { roles: ['student'] }},
   { path: "admin", component: AdminComponent, children: [
-      { path: 'predmeti', component: PredmetiComponent },
-      { path: 'nastavnici', component: AdminNastavniciComponent },
-      { path: 'upravljanje', component: AdminUpravljanjeComponent },
+      { path: 'predmeti', component: PredmetiComponent, canActivate: [roleGuard], data: { roles: ['admin'] } },
+      { path: 'nastavnici', component: AdminNastavniciComponent, canActivate: [roleGuard], data: { roles: ['admin'] } },
+      { path: 'upravljanje', component: AdminUpravljanjeComponent, canActivate: [roleGuard], data: { roles: ['admin'] } },
       { path: 'login', component: AdminLoginComponent},
+      { path: 'statistika', component: AdminStatistikaGodineComponent, canActivate: [roleGuard], data: { roles: ['admin'] } },
       { path: '', redirectTo: 'login', pathMatch: 'full' }
     ]},
   { path: "nastavnik", component: NastavnikComponent, children: [
@@ -60,6 +65,7 @@ const routes: Routes = [
       { path: "demonstratoriForme", component: DemonstratoriFormaComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
       { path: "demonstratoriPrijave", component: DemonstratoriPrijavljeniComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
       { path: "login", component: NastavnikLoginComponent},
+      { path: "loginLdap", component: NastavnikLdapLoginComponent},
       { path: 'obaveze/:idObaveze', component: NastavnikObavezeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] } },
       { path: "pregledLaboratorija", component: PregledLaboratorijaComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
       { path: "promenaLozinke", component: NastavnikPromenaLozinkeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},

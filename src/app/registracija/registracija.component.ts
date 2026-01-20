@@ -14,11 +14,11 @@ export class RegistracijaComponent {
   korIme:string = "";
   greska: string = "";
   uspeh: string = "";
-
+  
   registracija(){
     this.greska = "";
     this.uspeh = "";
-    if (this.korIme = ""){
+    if (this.korIme == ""){
       this.greska = "Nije uneta email adresa!";
       return;
     }
@@ -58,4 +58,6 @@ export class RegistracijaComponent {
       )
     }
   }
+  
+
 }

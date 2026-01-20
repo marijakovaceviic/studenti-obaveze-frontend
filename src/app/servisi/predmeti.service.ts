@@ -53,4 +53,12 @@ export class PredmetiService {
     return this.http.get<Predmet[]>(`${this.url}/aktivneObavezeZaGodinu/${godina}`);
   }
 
+  brojStudenataKojiPrateObavestenjaZaPredmet(idPredmet: number){
+    return this.http.get<number>(`${this.url}/brojStudenataKojiPrate/${idPredmet}`);
+  }
+
+  dohvatanjePredmetaPoId(id: number){
+    return this.http.get<Predmet>(`${this.url}/premaId/${id}`);
+  }
+
 }

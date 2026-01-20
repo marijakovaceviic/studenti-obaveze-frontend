@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Obaveza } from '../modeli/obaveza';
+import { StatistikaObaveza } from '../modeli/statistikaObaveza';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +55,11 @@ export class ObavezeService {
     return this.http.get<number>(`${this.url}/brojAktivnih/zaPredmet/${idPredmet}`);
   }
 
-   brojIsteklihObavezaZaPredmet(idPredmet: number){
+  brojIsteklihObavezaZaPredmet(idPredmet: number){
     return this.http.get<number>(`${this.url}/brojIsteklih/zaPredmet/${idPredmet}`);
+  }
+
+  statistikaObavezaPoPredmetima(godina: number, odsek: string){
+    return this.http.get<StatistikaObaveza[]>(`${this.url}/statistika/${godina}/${odsek}`);
   }
 }
