@@ -28,11 +28,11 @@
         <a class="nav-link fs-5" routerLink="/podesavanja">Podešavanja</a>
       </li>
 
-      <li class="nav-item" *ngIf="gostStrana()">
+      <li class="nav-item" *ngIf="gostStrana() && !daLiJeUlogovan()">
         <a class="nav-link fs-5" routerLink="/login">Prijava</a>
       </li>
 
-      <li class="nav-item" *ngIf="gostStrana()">
+      <li class="nav-item" *ngIf="gostStrana() && !daLiJeUlogovan()">
         <a class="nav-link fs-5" routerLink="/loginLdap">Prijava LDAP</a>
       </li>
 
@@ -52,7 +52,7 @@
         <a class="nav-link fs-5" routerLink="/nastavnik/promenaLozinke">Promena lozinke</a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="daLiJeUlogovan()">
         <a class="nav-link fs-5" routerLink="/odjava">Odjava</a>
       </li>
     </ul>

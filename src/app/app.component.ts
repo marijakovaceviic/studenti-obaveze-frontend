@@ -33,4 +33,12 @@ export class AppComponent {
     return !this.nastavnikStrana() && !this.adminStrana();
   }
 
+  daLiJeUlogovan(): boolean{
+    let korisnik = localStorage.getItem("ulogovan"); 
+    if (korisnik != null){
+      return true;
+    }
+    return false;
+  }
+
 }
