@@ -71,10 +71,6 @@ export class NastavnikOtvaranjeFormeComponent {
           id=>{
             if (id != null){
               this.uspeh = "Obaveza je uspešno dodata!";
-              
-              this.emailS.otvorenaObaveza(id).subscribe(
-
-              )
               this.pocetak = "";
               this.kraj = "";
               this.tip = "";

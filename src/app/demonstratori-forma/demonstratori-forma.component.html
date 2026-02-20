@@ -21,6 +21,12 @@
 
     <button class="moj-btn" type="submit">Sačuvaj</button>
 
+    <div *ngIf="uspeh" class="text-success mb-2">
+      {{uspeh}}
+    </div>
+    <div *ngIf="greska" class="text-danger mb-2">
+      {{greska}}
+    </div>
   </form>
 
 </div>

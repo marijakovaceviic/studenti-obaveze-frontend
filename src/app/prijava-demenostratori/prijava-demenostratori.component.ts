@@ -6,6 +6,8 @@ import { Student } from '../modeli/student';
 import { DemonstratoriService } from '../servisi/demonstratori.service';
 import { DemonstratoriForma } from '../modeli/demonstratoriForma';
 import { EmailService } from '../servisi/email.service';
+import { catchError, EMPTY } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-prijava-demenostratori',
@@ -112,18 +114,24 @@ export class PrijavaDemenostratoriComponent {
   }
 
   preuzimanjeKonkursa(){
-    this.demonstratoriS.dohvatanjeKonkursa(this.forma.id).subscribe(
-      blob =>{
-        const url = window.URL.createObjectURL(blob);
-
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = "konkurs.pdf";   
-        a.click();
-
-        window.URL.revokeObjectURL(url);
-      }
-    )
+    this.demonstratoriS.dohvatanjeKonkursa(this.forma.id).pipe(
+          catchError((err: HttpErrorResponse) => {
+            if (err.status === 404) {
+              alert('Fajl nije pronađen!');
+            } else {
+              alert('Došlo je do greške prilikom preuzimanja fajla!');
+            }
+            return EMPTY; 
+          })
+        ).subscribe((blob) => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = "konkurs.pdf";
+          a.click();
+          window.URL.revokeObjectURL(url);
+        });
+      
   }
 
   dohvatiIzabranePredmete(){

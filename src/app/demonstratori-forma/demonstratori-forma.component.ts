@@ -54,10 +54,10 @@ export class DemonstratoriFormaComponent {
             this.uspeh = "Forma je uspešno dodata!";
             this.datumOd = "";
             this.datumDo = "";
-            this.pdfFajl = null; //ovo nije dovoljno!
-            this.emailS.otvorenaPrijavaZaDemonstratore().subscribe(
+            this.pdfFajl = null; 
+        /*    this.emailS.otvorenaPrijavaZaDemonstratore().subscribe(
 
-            )
+            ) */
           }
           
         }
