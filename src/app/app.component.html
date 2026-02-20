@@ -36,15 +36,15 @@
         <a class="nav-link fs-5" routerLink="/loginLdap">Prijava LDAP</a>
       </li>
 
-      <li class="nav-item" *ngIf="nastavnikStrana()">
+      <li class="nav-item" *ngIf="nastavnikStrana() && !daLiJeUlogovan()">
         <a class="nav-link fs-5" routerLink="/nastavnik/login">Prijava</a>
       </li>
 
-      <li class="nav-item" *ngIf="nastavnikStrana()">
+      <li class="nav-item" *ngIf="nastavnikStrana() && !daLiJeUlogovan()">
         <a class="nav-link fs-5" routerLink="/nastavnik/loginLdap">Prijava LDAP</a>
       </li>
 
-      <li class="nav-item" *ngIf="adminStrana()">
+      <li class="nav-item" *ngIf="adminStrana() && !daLiJeUlogovan()">
         <a class="nav-link fs-5" routerLink="/admin/login">Prijava</a>
       </li>
 
