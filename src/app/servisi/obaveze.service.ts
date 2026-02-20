@@ -62,4 +62,26 @@ export class ObavezeService {
   statistikaObavezaPoPredmetima(godina: number, odsek: string){
     return this.http.get<StatistikaObaveza[]>(`${this.url}/statistika/${godina}/${odsek}`);
   }
+
+  dohvatanjeNovootvorenihObavezaZaPredmet(idPredmeta: number){
+    return this.http.get<Obaveza[]>(`${this.url}/nove/zaPredmet/${idPredmeta}`);
+  }
+
+  azuriranjeObaveze(id: number, naziv: string, opis: string, tip: string, 
+                  pocetak: string, kraj: string, predmet: number){
+    const data = {
+      id: id,
+      naziv: naziv,
+      opis: opis,
+      tip: tip,
+      pocetak: pocetak,
+      kraj: kraj,
+      predmet: predmet
+    };
+    return this.http.post<number>(`${this.url}/azuriranje`, data);
+  }
+
+  brojNovihNeaktivnihObavezaNaPredmetu(idPredmet: number){
+    return this.http.get<number>(`${this.url}/brojNovihNeaktivnih/zaPredmet/${idPredmet}`);
+  }
 }

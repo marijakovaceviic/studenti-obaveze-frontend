@@ -43,6 +43,9 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminStatistikaGodineComponent } from './admin-statistika-godine/admin-statistika-godine.component';
 import { StudentLdapLoginComponent } from './student-ldap-login/student-ldap-login.component';
 import { NastavnikLdapLoginComponent } from './nastavnik-ldap-login/nastavnik-ldap-login.component';
+import { ZaboravljenaLozinkaComponent } from './zaboravljena-lozinka/zaboravljena-lozinka.component';
+import { OtvoreneObavezeComponent } from './otvorene-obaveze/otvorene-obaveze.component';
+import { AzuriranjeObavezeComponent } from './azuriranje-obaveze/azuriranje-obaveze.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +85,10 @@ import { NastavnikLdapLoginComponent } from './nastavnik-ldap-login/nastavnik-ld
     AdminLoginComponent,
     AdminStatistikaGodineComponent,
     StudentLdapLoginComponent,
-    NastavnikLdapLoginComponent
+    NastavnikLdapLoginComponent,
+    ZaboravljenaLozinkaComponent,
+    OtvoreneObavezeComponent,
+    AzuriranjeObavezeComponent
   ],
   imports: [
     BrowserModule,

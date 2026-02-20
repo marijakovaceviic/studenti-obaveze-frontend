@@ -37,6 +37,9 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminStatistikaGodineComponent } from './admin-statistika-godine/admin-statistika-godine.component';
 import { StudentLdapLoginComponent } from './student-ldap-login/student-ldap-login.component';
 import { NastavnikLdapLoginComponent } from './nastavnik-ldap-login/nastavnik-ldap-login.component';
+import { ZaboravljenaLozinkaComponent } from './zaboravljena-lozinka/zaboravljena-lozinka.component';
+import { OtvoreneObavezeComponent } from './otvorene-obaveze/otvorene-obaveze.component';
+import { AzuriranjeObavezeComponent } from './azuriranje-obaveze/azuriranje-obaveze.component';
 
 const routes: Routes = [
   { path: "", component: PocetnaComponent},
@@ -53,6 +56,7 @@ const routes: Routes = [
       { path: 'upravljanje', component: AdminUpravljanjeComponent, canActivate: [roleGuard], data: { roles: ['admin'] } },
       { path: 'login', component: AdminLoginComponent},
       { path: 'statistika', component: AdminStatistikaGodineComponent, canActivate: [roleGuard], data: { roles: ['admin'] } },
+      { path: 'zaboravljenaLozinka/:uloga', component: ZaboravljenaLozinkaComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' }
     ]},
   { path: "nastavnik", component: NastavnikComponent, children: [
@@ -69,6 +73,9 @@ const routes: Routes = [
       { path: 'obaveze/:idObaveze', component: NastavnikObavezeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] } },
       { path: "pregledLaboratorija", component: PregledLaboratorijaComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
       { path: "promenaLozinke", component: NastavnikPromenaLozinkeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
+      { path: 'zaboravljenaLozinka/:uloga', component: ZaboravljenaLozinkaComponent },
+      { path: 'noveForme', component: OtvoreneObavezeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] }},
+       { path: 'azuriranjeObaveze/:idObaveze', component: AzuriranjeObavezeComponent, canActivate: [roleGuard], data: { roles: ['nastavnik'] } },
       { path: '', redirectTo: 'login', pathMatch: 'full' }
     ]},
   
@@ -78,7 +85,8 @@ const routes: Routes = [
   { path: "prijavljeniIspiti", component: PrijavljeniIspitiComponent, canActivate: [roleGuard], data: { roles: ['student'] }},
   { path: "prijavaZaDemonstratore", component: PrijavaDemenostratoriComponent},
   { path: "neautorizovan", component: NeautorizovanComponent},
-  { path: "odjava", component: OdjavaComponent}
+  { path: "odjava", component: OdjavaComponent},
+  { path: 'zaboravljenaLozinka/:uloga', component: ZaboravljenaLozinkaComponent }
 ];
 
 @NgModule({
