@@ -36,7 +36,7 @@ export class NastavnikPromenaLozinkeComponent {
             this.uspeh = "Lozinka je uspešno promenjena! Prijavite se ponovo da biste nastavli.";
           }
           else{
-            this.greska = "Pogrešan email ili lozinka!";
+            this.greska = "Pogrešna lozinka!";
           }
         }
       )

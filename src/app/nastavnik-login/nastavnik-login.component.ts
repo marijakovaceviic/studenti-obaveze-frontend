@@ -37,4 +37,8 @@ export class NastavnikLoginComponent {
       ) 
     }
   }
+
+  zaboravljenaLozinka(){
+    this.router.navigate(['/zaboravljenaLozinka', 'nastavnik']);
+  }
 }

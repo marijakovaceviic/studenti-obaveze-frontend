@@ -36,4 +36,8 @@ export class AdminLoginComponent {
       ) 
     }
   }
+
+  zaboravljenaLozinka(){
+    this.router.navigate(['/admin/zaboravljenaLozinka', 'admin']);
+  }
 }

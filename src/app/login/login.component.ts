@@ -43,4 +43,8 @@ export class LoginComponent {
   registracija(){
     this.router.navigate(['/registracija']);
   }
+
+  zaboravljenaLozinka(){
+    this.router.navigate(['/zaboravljenaLozinka', 'student']);
+  }
 }
