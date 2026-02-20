@@ -22,6 +22,8 @@ export class RezervacijaLaboratorijaComponent {
   izabraneLaboratorije: number[] = [];
   ulogovan: Nastavnik = new Nastavnik();
 
+  viseTermina: boolean = false;
+
   constructor(private rezeravijeS: RezervacijeService) {}
 
    ngOnInit(): void{
@@ -95,13 +97,16 @@ export class RezervacijaLaboratorijaComponent {
         this.rezeravijeS.novaRezervacija(lab, this.nazivObaveze, this.ulogovan.id, this.datum, this.vremeOd, this.vremeDo, this.akronim).subscribe(
           rez=>{
             if (rez != 0){
-              this.uspeh = "Uspešna rezervacija!";
-              this.nazivObaveze = "";
-              this.akronim = "";
               this.datum = "";
               this.vremeOd = "";
               this.vremeDo = "";
+              this.uspeh = "Možete rezervisati sledeći termin!";
               this.izabraneLaboratorije = [];
+              if (!this.viseTermina){
+                this.uspeh = "Uspešna rezervacija!";
+                this.nazivObaveze = "";
+                this.akronim = "";
+              }
             }
             else{
               this.greska = "Neuspešna rezervacja!";
