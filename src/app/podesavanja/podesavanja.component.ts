@@ -44,6 +44,13 @@ export class PodesavanjaComponent {
         predmeti=>{
           this.sviPredmeti = predmeti;
           this.filtriraniPredmeti = this.sviPredmeti;  
+
+          this.predmetiS.dohvatanjeIzabranihPredmeta(this.ulogovan.id).subscribe(
+            predmetiIzbor => {
+              this.zapamceniIzborPredmeta = predmetiIzbor;
+              this.izabraniPredmeti = predmetiIzbor.map(p => p.id);
+            }
+          ); 
         }
       )
     }
@@ -122,20 +129,21 @@ export class PodesavanjaComponent {
   sacuvajIzbor(){
     this.greskaPredmeti = "";
 
-    if (this.izabraniPredmeti.length === 0 && this.izabraneGodine.length === 0 && this.odsek === "") {
-      this.greskaPredmeti = "Morate izabrati godinu, odsek ili predmete!"
+    if (this.izabraniPredmeti.length === 0) {
+      this.greskaPredmeti = "Morate izabrati predmete za koje želite da pratite obaveštenja!"
       return;
     }
-    const predmetiZaSlanje = this.izabraniPredmeti.length > 0 ? this.izabraniPredmeti : this.filtriraniPredmeti.map(p => p.id);
+
+    if (!this.promenioSeIzbor()) {
+      this.uspehPredmeti = "Nije bilo promena u izboru predmeta!";
+      return;
+    }
     
-    this.predmetiS.cuvanjeIzabranihPredmeta(predmetiZaSlanje, this.ulogovan.id).subscribe(
+    this.predmetiS.cuvanjeIzabranihPredmeta(this.izabraniPredmeti, this.ulogovan.id).subscribe(
       data =>{
         if (data != 0){
-          this.izabraniPredmeti = [];
-          this.izabraneGodine = [];
-          this.odsek = "";
-          this.filtriraniPredmeti = this.sviPredmeti;
-          this.uspehPredmeti = "Uspešan izbor predmeta";
+          this.uspehPredmeti = "Uspešan izbor predmeta!";
+          this.izabraniPredmetiZaStudenta();
         }
       }
     )
@@ -145,15 +153,33 @@ export class PodesavanjaComponent {
     this.prikaziIzabrane = !this.prikaziIzabrane; 
 
     if (this.prikaziIzabrane){
-      this.predmetiS.dohvatanjeIzabranihPredmeta(this.ulogovan.id).subscribe(
-        predmeti =>{
-          this.zapamceniIzborPredmeta = predmeti;
-        }
-      )
+      this.izabraniPredmetiZaStudenta();
     }
+  }
+
+  izabraniPredmetiZaStudenta(){
+    this.predmetiS.dohvatanjeIzabranihPredmeta(this.ulogovan.id).subscribe(
+      predmeti => {
+        this.zapamceniIzborPredmeta = predmeti;
+      }
+    )
   }
 
   formatIndeksa(br: number): string {
     return br.toString().padStart(4, '0');
   }
+
+  private promenioSeIzbor(): boolean {
+    const idZapamcenih = this.zapamceniIzborPredmeta.map(p => p.id).sort();
+    const idIzabranih = this.izabraniPredmeti.sort();
+
+    if (idIzabranih.length !== idZapamcenih.length) return true;
+
+    for (let i = 0; i < idZapamcenih.length; i++) {
+      if (idZapamcenih[i] !== idIzabranih[i]) return true;
+    }
+
+    return false; 
+  }
+
 }
